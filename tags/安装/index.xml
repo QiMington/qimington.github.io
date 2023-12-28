@@ -1,0 +1,7 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>安装 - 标签 - QiMington's</title><link>/tags/%E5%AE%89%E8%A3%85/</link><description>安装 - 标签 - QiMington's</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 21 Oct 2022 12:11:30 +0800</lastBuildDate><atom:link href="/tags/%E5%AE%89%E8%A3%85/" rel="self" type="application/rss+xml"/><item><title>linux安装Docker</title><link>/posts/docker/linux%E5%AE%89%E8%A3%85docker/</link><pubDate>Fri, 21 Oct 2022 12:11:30 +0800</pubDate><author>QiMington</author><guid>/posts/docker/linux%E5%AE%89%E8%A3%85docker/</guid><description><![CDATA[安装Docker 参考官方教程：https://docs.docker.com/get-docker/
+windows 默认安装在C:\Program Files\Docker
+解决方式：
+在其它你希望的安装位置新建一个Docker文件，这里以 B:\Docker 为例
+ 删除如下目录 C:\Program Files\Docker 以管理员身份打开cmd（win+R =&gt; 输入cmd =&gt; ctrl+shift+enter） cmd中执行命令（mklink /j &ldquo;C:\Program Files\Docker&rdquo; &ldquo;B:\Docker&rdquo;） 执行下载的安装程序  linux 卸载旧的版本
+1 2 3 4 5 6 7 8  sudo yum remove docker \  docker-client \  docker-client-latest \  docker-common \  docker-latest \  docker-latest-logrotate \  docker-logrotate \  docker-engine   需要安装包
+1  sudo yum install -y yum-utils   设置镜像仓库]]></description></item></channel></rss>

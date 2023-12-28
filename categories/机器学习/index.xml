@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>机器学习 - 分类 - QiMington's</title><link>/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link><description>机器学习 - 分类 - QiMington's</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 20 May 2022 10:50:40 +0800</lastBuildDate><atom:link href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="self" type="application/rss+xml"/><item><title>Python实现11种特征选择策略</title><link>/posts/ml/</link><pubDate>Fri, 20 May 2022 10:50:40 +0800</pubDate><author>QiMington</author><guid>/posts/ml/</guid><description><![CDATA[Python实现11种特征选择策略 太多的特征会增加模型的复杂性和过拟合，而太少的特征会导致模型的拟合不足。将模型优化为足够复杂以使其性能可推广，但又足够简单易于训练、维护和解释是特征选择的主要工作。
+“特征选择”意味着可以保留一些特征并放弃其他一些特征。本文的目的是概述一些特征选择策略：
+  删除未使用的列
+  删除具有缺失值的列
+  不相关的特征
+  低方差特征
+  多重共线性
+  特征系数
+  p 值
+  方差膨胀因子 (VIF)
+  基于特征重要性的特征选择
+  使用 scikit-learn 进行自动特征选择
+  主成分分析 (PCA )
+  该演示的数据集在 MIT 许可下发布，来自 PyCaret——一个开源的低代码机器学习库。
+数据集相当干净，但我做了一些预处理。请注意，我使用此数据集来演示不同的特征选择策略如何工作，而不是构建最终模型，因此模型性能无关紧要。
+首先加载数据集：
+1 2 3 4  import pandas as pddata = &#39;https://raw.githubusercontent.com/pycaret/pycaret/master/datasets/automobile.csv&#39;df = pd.read_csv(data) # remove rows with &#39;?&#39;df = df[df[&#39;bore&#39;]!=&#39;?&#39;]df = df[df[&#39;stroke&#39;]!]]></description></item></channel></rss>
