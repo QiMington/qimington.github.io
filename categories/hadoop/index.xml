@@ -2,4 +2,4 @@
 1  cd /etc/sysconfig/network-scripts/   如果有对应的网卡配置文件 则打开对应的配置文件
 1  vim ifcfg-eth0   分别做出更新和新增配置操作，其中新增配置内容从Parallel虚拟机--&gt;设置--&gt;网络--&gt;高级--&gt;打开网络首选项--&gt;Shared查看。
 1 2 3 4 5 6 7 8  # 更新 BOOTPROTO=static ONBOOT=yes # 新增 IADDR=10.211.55.100 # 你要分配的固定ip GATEWAY=10.211.55.1 # 网关地址 NETMASK=255.255.255.0 # 子网掩码 DNS1=10.211.55.1 # 域名解析器地址   如果没有对应的网卡配置文件   随便复制一份网卡配置文件并命名为你需要的网卡名
-1 2  # 这里以网卡eth0为例 cp ifcfg-enp0s5 ifcfg-eth0     查询网卡UUID信息，记下UUID值]]></description></item></channel></rss>
+1 2  # 这里以网卡eth0为例 cp ifcfg-enp0s5 ifcfg-eth0     查询网卡UUID信息，记下UUID值]]></description></item><item><title>碎片笔记</title><link>/posts/hadoop/%E7%A2%8E%E7%89%87%E7%AC%94%E8%AE%B0/</link><pubDate>Fri, 29 Dec 2023 00:32:50 +0800</pubDate><author>QiMington</author><guid>/posts/hadoop/%E7%A2%8E%E7%89%87%E7%AC%94%E8%AE%B0/</guid><description>修改centos的主机名 1 vim /etc/hostname 修改centos主机名映射hosts文件 1 vim /etc/hosts</description></item></channel></rss>
