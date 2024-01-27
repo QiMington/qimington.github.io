@@ -4,4 +4,9 @@ windows 默认安装在C:\Program Files\Docker
 在其它你希望的安装位置新建一个Docker文件，这里以 B:\Docker 为例
  删除如下目录 C:\Program Files\Docker 以管理员身份打开cmd（win+R =&gt; 输入cmd =&gt; ctrl+shift+enter） cmd中执行命令（mklink /j &ldquo;C:\Program Files\Docker&rdquo; &ldquo;B:\Docker&rdquo;） 执行下载的安装程序  linux 卸载旧的版本
 1 2 3 4 5 6 7 8  sudo yum remove docker \  docker-client \  docker-client-latest \  docker-common \  docker-latest \  docker-latest-logrotate \  docker-logrotate \  docker-engine   需要安装包
-1  sudo yum install -y yum-utils   设置镜像仓库]]></description></item></channel></rss>
+1  sudo yum install -y yum-utils   设置镜像仓库]]></description></item><item><title>在Docker中启动一个centos系统+代理+python</title><link>/posts/docker/%E5%9C%A8docker%E4%B8%AD%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAcentos%E7%B3%BB%E7%BB%9F/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>QiMington</author><guid>/posts/docker/%E5%9C%A8docker%E4%B8%AD%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AAcentos%E7%B3%BB%E7%BB%9F/</guid><description><![CDATA[在Docker中启动一个centos系统+代理+python 过程记录   通过compose文件启动容器 运行位于附件中的linux-compose.yml文件 注意其中的卷映射规则，根据自己实际情况进行修改
+1  docker-compose -f linux-compose.yml up -d     进入容器运行install.sh脚本，该脚本会为你自动更新软件包并设置root账户的密码为123456
+1 2 3  docker exec -it &lt;容器名&gt; /bin/bash cd / ./install.sh     设置代理
+如果有需要，可以为系统设置代理
+1 2 3 4  # 设置http代理 export http_proxy=http://&lt;ip&gt;:&lt;port&gt; # 设置https代理 export https_proxy=http://&lt;ip&gt;:&lt;port&gt;   取消代理
+1 2 3 4  unset http_proxy unset https_proxy # 可进行查看是否取消成功 echo $http_proxy     附件  三个文件]]></description></item></channel></rss>
