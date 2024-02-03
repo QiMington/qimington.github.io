@@ -19,7 +19,7 @@
 </span><span class=lnt> 9
 </span><span class=lnt>10
 </span><span class=lnt>11
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 添加地理位置</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 添加地理位置</span>
 <span class=c1># 规则：两极无法直接添加，一般会下载城市数据，直接通过java程序一次性导入。</span>
 <span class=c1># 参数 key 值（经度、纬度、名称）</span>
 <span class=c1># 有效经度从-180度到180度</span>
@@ -41,7 +41,7 @@
 </span><span class=lnt> 9
 </span><span class=lnt>10
 </span><span class=lnt>11
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; geopos china:city beijing
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; geopos china:city beijing
 1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;116.39999896287918091&#34;</span>
    2<span class=o>)</span> <span class=s2>&#34;39.90000009167092543&#34;</span>
 127.0.0.1:6379&gt; geopos china:city chongqing
@@ -57,7 +57,7 @@
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 直线距离</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 直线距离</span>
 127.0.0.1:6379&gt; geodist china:city shanghai beijing
 <span class=s2>&#34;1067378.7564&#34;</span>
 127.0.0.1:6379&gt; geodist china:city shanghai beijing km 
@@ -76,7 +76,7 @@
 </span><span class=lnt>12
 </span><span class=lnt>13
 </span><span class=lnt>14
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; GEORADIUS china:city <span class=m>110</span> <span class=m>30</span> <span class=m>500</span> km withdist	<span class=c1># 显示距离</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; GEORADIUS china:city <span class=m>110</span> <span class=m>30</span> <span class=m>500</span> km withdist	<span class=c1># 显示距离</span>
 1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;chongqing&#34;</span>
    2<span class=o>)</span> <span class=s2>&#34;341.9374&#34;</span>
 2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;xian&#34;</span>
@@ -95,7 +95,7 @@
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; GEORADIUSBYMEMBER china:city beijing <span class=m>1000</span> km
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; GEORADIUSBYMEMBER china:city beijing <span class=m>1000</span> km
 1<span class=o>)</span> <span class=s2>&#34;beijing&#34;</span>
 2<span class=o>)</span> <span class=s2>&#34;xian&#34;</span>
 127.0.0.1:6379&gt; GEORADIUSBYMEMBER china:city xian <span class=m>400</span> km
@@ -104,7 +104,7 @@
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 将二维的经纬度转换为一维的字符串，如果两个字符串越接近，那么距离越接近</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 将二维的经纬度转换为一维的字符串，如果两个字符串越接近，那么距离越接近</span>
 127.0.0.1:6379&gt; GEOHASH china:city shanghai beijing
 1<span class=o>)</span> <span class=s2>&#34;wtw3sj5zbj0&#34;</span>
 2<span class=o>)</span> <span class=s2>&#34;wx4fbxxfke0&#34;</span>
@@ -123,7 +123,7 @@
 </span><span class=lnt>13
 </span><span class=lnt>14
 </span><span class=lnt>15
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; zrange china:city <span class=m>0</span> -1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; zrange china:city <span class=m>0</span> -1
 1<span class=o>)</span> <span class=s2>&#34;chongqing&#34;</span>
 2<span class=o>)</span> <span class=s2>&#34;xian&#34;</span>
 3<span class=o>)</span> <span class=s2>&#34;shengzhen&#34;</span>
@@ -156,7 +156,7 @@
 </span><span class=lnt>16
 </span><span class=lnt>17
 </span><span class=lnt>18
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; pfadd mykey a b c d e f g h i j	<span class=c1># 创建第一组元素mykey</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; pfadd mykey a b c d e f g h i j	<span class=c1># 创建第一组元素mykey</span>
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
 127.0.0.1:6379&gt; pfcount mykey	<span class=c1># 统计mykey元素的基数数量（非重复）</span>
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>10</span>
@@ -199,7 +199,7 @@ OK
 </span><span class=lnt>23
 </span><span class=lnt>24
 </span><span class=lnt>25
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 使用bitmap来记录周一到周日的打卡</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 使用bitmap来记录周一到周日的打卡</span>
 127.0.0.1:6379&gt; setbit sign <span class=m>0</span> <span class=m>1</span>
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
 127.0.0.1:6379&gt; setbit sign <span class=m>1</span> <span class=m>0</span>

@@ -7,7 +7,7 @@
 <span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#centos中编译安装python>centos中编译安装Python</a><ul><li><a href=#安装编译所需依赖>安装编译所需依赖</a></li><li><a href=#安装python-310>安装Python 3.10</a></li><li><a href=#添加软链接>添加软链接</a></li><li><a href=#测试是否安装成功了>测试是否安装成功了</a></li><li><a href=#默认的centos7是没有安装pip先添加epel扩展源>默认的centos7是没有安装pip，先添加epel扩展源</a></li><li><a href=#安装pip>安装pip</a></li><li><a href=#更改yum配置因为其要用到python2才能执行否则会导致yum不能正常使用>更改yum配置，因为其要用到python2才能执行，否则会导致yum不能正常使用</a></li></ul></li></ul></nav></div></div><div class=content id=content><h2 id=centos中编译安装python>centos中编译安装Python</h2><h3 id=安装编译所需依赖>安装编译所需依赖</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>yum -y update
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>yum -y update
 yum -y install openssl-devel libffi-devel bzip2-devel
 yum -y groupinstall <span class=s2>&#34;Development Tools&#34;</span>
 </code></pre></td></tr></table></div></div><blockquote><p>安装 Python 3.10 必需的 openssl >= 1.1.1
@@ -17,7 +17,7 @@ python时候遇到的ssl模块导入失败的问题，这里需要用的openssl1
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>wget https://www.openssl.org/source/openssl-1.1.1q.tar.gz --no-check-certificate
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>wget https://www.openssl.org/source/openssl-1.1.1q.tar.gz --no-check-certificate
 tar zxf openssl-1.1.1q.tar.gz
 <span class=nb>cd</span> openssl-1.1.1q
 ./config --prefix<span class=o>=</span>/usr/local/openssl-1.1.1
@@ -27,7 +27,7 @@ make <span class=o>&amp;&amp;</span> make install
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>wget https://www.python.org/ftp/python/3.10.8/Python-3.10.8.tgz
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>wget https://www.python.org/ftp/python/3.10.8/Python-3.10.8.tgz
 tar zxf Python-3.10.8.tgz
 <span class=nb>cd</span> Python-3.10.8
 ./configure --prefix<span class=o>=</span>/opt/python/python3108 --enable-optimizations --with-openssl<span class=o>=</span>/usr/local/openssl-1.1.1 --with-openssl-rpath<span class=o>=</span>auto
@@ -40,7 +40,7 @@ make altinstall
 </span><span class=lnt>6
 </span><span class=lnt>7
 </span><span class=lnt>8
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>whereis python
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>whereis python
 <span class=c1># python2.7默认安装是在 /usr/bin目录中，切换到/usr/bin/</span>
 <span class=nb>cd</span> /usr/bin/
 ll python*
@@ -49,18 +49,18 @@ mv /usr/bin/python /usr/bin/python.bak
 <span class=c1># 添加python3软链接</span>
 ln -s /opt/python/python3108/bin/python3.10 /usr/bin/python
 </code></pre></td></tr></table></div></div><h3 id=测试是否安装成功了>测试是否安装成功了</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>python -V
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>python -V
 </code></pre></td></tr></table></div></div><h3 id=默认的centos7是没有安装pip先添加epel扩展源>默认的centos7是没有安装pip，先添加epel扩展源</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>yum -y install epel-release
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>yum -y install epel-release
 </code></pre></td></tr></table></div></div><h3 id=安装pip>安装pip</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>yum install python-pip
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>yum install python-pip
 </code></pre></td></tr></table></div></div><h3 id=更改yum配置因为其要用到python2才能执行否则会导致yum不能正常使用>更改yum配置，因为其要用到python2才能执行，否则会导致yum不能正常使用</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>vi /usr/bin/yum
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>vi /usr/bin/yum
 <span class=c1>#把第一行的#! /usr/bin/python 修改为如下</span>
 <span class=c1>#! /usr/bin/python2</span>
 vi /usr/libexec/urlgrabber-ext-down

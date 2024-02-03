@@ -31,7 +31,7 @@ Redis的事务：
 </span><span class=lnt>11
 </span><span class=lnt>12
 </span><span class=lnt>13
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; multi	<span class=c1># 开启事务</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; multi	<span class=c1># 开启事务</span>
 OK
 <span class=c1># 命令入队</span>
 127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k1 v1
@@ -56,7 +56,7 @@ QUEUED
 </span><span class=lnt>10
 </span><span class=lnt>11
 </span><span class=lnt>12
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; multi
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; multi
 OK
 127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k4 v4
 QUEUED
@@ -86,7 +86,7 @@ OK
 </span><span class=lnt>16
 </span><span class=lnt>17
 </span><span class=lnt>18
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; multi
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; multi
 OK
 127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k1 v1
 QUEUED
@@ -126,7 +126,7 @@ QUEUED
 </span><span class=lnt>20
 </span><span class=lnt>21
 </span><span class=lnt>22
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; multi
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; multi
 OK
 127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k1 <span class=s2>&#34;v1&#34;</span>
 QUEUED
@@ -163,7 +163,7 @@ QUEUED
 </span><span class=lnt>13
 </span><span class=lnt>14
 </span><span class=lnt>15
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; <span class=nb>set</span> money <span class=m>100</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; <span class=nb>set</span> money <span class=m>100</span>
 OK
 127.0.0.1:6379&gt; <span class=nb>set</span> out <span class=m>0</span>
 OK
@@ -192,7 +192,7 @@ QUEUED
 </span><span class=lnt>12
 </span><span class=lnt>13
 </span><span class=lnt>14
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; watch money	<span class=c1># 监视money</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; watch money	<span class=c1># 监视money</span>
 OK
 127.0.0.1:6379&gt; multi
 OK

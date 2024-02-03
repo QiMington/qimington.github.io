@@ -61,7 +61,7 @@ docker run --name sasd-mysql -d -p 33060:3306 -v /home/mysql/sasd/conf:/etc/mysq
 </span><span class=lnt>17
 </span><span class=lnt>18
 </span><span class=lnt>19
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 启动mysql容器 查看数据文件存放路径</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 启动mysql容器 查看数据文件存放路径</span>
 docker run -d -p 4728:3306 --name farming-mysql -e <span class=nv>MYSQL_ROOT_PASSWORD</span><span class=o>=</span>qimington_farming mysql:8.0.20
 
 docker <span class=nb>exec</span> -it farming-mysql bash
@@ -81,7 +81,7 @@ docker rm farming-mysql
 
 docker run -d -p 4728:3306 --name farming-mysql -v /home/mysql/farming/conf/mysql:/etc/mysql -v /home/mysql/farming/data:/var/lib/mysql -m 900m --memory-swap 1g -e <span class=nv>MYSQL_ROOT_PASSWORD</span><span class=o>=</span>qimington_farming mysql:8.0.20
 </code></pre></td></tr></table></div></div><h2 id=更新容器参数>更新容器参数</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>docker container update <span class=o>[</span>OPTIONS<span class=o>]</span> CONTAINER
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker container update <span class=o>[</span>OPTIONS<span class=o>]</span> CONTAINER
 </code></pre></td></tr></table></div></div><h2 id=通过镜像启动redis容器>通过镜像启动redis容器</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
@@ -161,7 +161,7 @@ docker run --name nginx -p 80:80 -v /home/nginx/nginx.conf:/etc/nginx/nginx.conf
 <span class=c1># 重新加载配置文件</span>
 docker <span class=nb>exec</span> CONTAINER nginx -s reload
 </code></pre></td></tr></table></div></div><h2 id=springboot微服务打包镜像>SpringBoot微服务打包镜像</h2><h3 id=本地测试运行jar包>本地测试运行jar包</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>java -jar xxx.jar
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>java -jar xxx.jar
 </code></pre></td></tr></table></div></div><h3 id=编写dockerfile>编写Dockerfile</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3

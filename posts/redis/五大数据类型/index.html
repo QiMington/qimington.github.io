@@ -104,7 +104,7 @@ string
 </span><span class=lnt>14
 </span><span class=lnt>15
 </span><span class=lnt>16
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; <span class=nb>set</span> key1 v1	<span class=c1># 设置值</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; <span class=nb>set</span> key1 v1	<span class=c1># 设置值</span>
 OK
 127.0.0.1:6379&gt; get key1	<span class=c1># 获得值</span>
 <span class=s2>&#34;v1&#34;</span>
@@ -142,7 +142,7 @@ OK
 </span><span class=lnt>20
 </span><span class=lnt>21
 </span><span class=lnt>22
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; <span class=nb>set</span> views <span class=m>0</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; <span class=nb>set</span> views <span class=m>0</span>
 OK
 127.0.0.1:6379&gt; get views
 <span class=s2>&#34;0&#34;</span>
@@ -176,7 +176,7 @@ OK
 </span><span class=lnt>10
 </span><span class=lnt>11
 </span><span class=lnt>12
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; <span class=nb>set</span> info <span class=s2>&#34;hello,qimington welcome to the world&#34;</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; <span class=nb>set</span> info <span class=s2>&#34;hello,qimington welcome to the world&#34;</span>
 OK
 127.0.0.1:6379&gt; get info
 <span class=s2>&#34;hello,qimington welcome to the world&#34;</span>
@@ -206,7 +206,7 @@ OK
 </span><span class=lnt>16
 </span><span class=lnt>17
 </span><span class=lnt>18
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; setex key1 <span class=m>30</span> <span class=s2>&#34;qimington&#34;</span>	<span class=c1># 设置key1的值为&#34;qimington&#34;，30秒后过期</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; setex key1 <span class=m>30</span> <span class=s2>&#34;qimington&#34;</span>	<span class=c1># 设置key1的值为&#34;qimington&#34;，30秒后过期</span>
 OK
 127.0.0.1:6379&gt; ttl key1
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>25</span>
@@ -240,7 +240,7 @@ OK
 </span><span class=lnt>14
 </span><span class=lnt>15
 </span><span class=lnt>16
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; mset k1 v1 k2 v2 k3 v3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; mset k1 v1 k2 v2 k3 v3
 OK
 127.0.0.1:6379&gt; keys *
 1<span class=o>)</span> <span class=s2>&#34;k3&#34;</span>
@@ -265,7 +265,7 @@ OK
 </span><span class=lnt>7
 </span><span class=lnt>8
 </span><span class=lnt>9
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; <span class=nb>set</span> user:1 <span class=o>{</span>name:zhangsan,age:2<span class=o>}</span>	<span class=c1># 设置一个&#34;user:1&#34;对象，值为json字符串来保存一个对象</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; <span class=nb>set</span> user:1 <span class=o>{</span>name:zhangsan,age:2<span class=o>}</span>	<span class=c1># 设置一个&#34;user:1&#34;对象，值为json字符串来保存一个对象</span>
 OK
 <span class=c1># 这里的key是一个巧妙的设计：user:{id}:{field}</span>
 127.0.0.1:6379&gt; mset user:2:name lisi user:2:age <span class=m>3</span>
@@ -282,7 +282,7 @@ OK
 </span><span class=lnt>6
 </span><span class=lnt>7
 </span><span class=lnt>8
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; getset db redis	<span class=c1># 无值则返回nil</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; getset db redis	<span class=c1># 无值则返回nil</span>
 <span class=o>(</span>nil<span class=o>)</span>
 127.0.0.1:6379&gt; getset db redis
 <span class=s2>&#34;redis&#34;</span>
@@ -330,7 +330,7 @@ OK
 </span><span class=lnt>38
 </span><span class=lnt>39
 </span><span class=lnt>40
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; lpush list1 <span class=s2>&#34;one&#34;</span>	<span class=c1># 将一个或者多个值插入到列表头部，即左边</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; lpush list1 <span class=s2>&#34;one&#34;</span>	<span class=c1># 将一个或者多个值插入到列表头部，即左边</span>
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
 127.0.0.1:6379&gt; lpush list1 <span class=s2>&#34;two&#34;</span>
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
@@ -378,7 +378,7 @@ OK
 </span><span class=lnt>6
 </span><span class=lnt>7
 </span><span class=lnt>8
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; lrange list1 <span class=m>0</span> -1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; lrange list1 <span class=m>0</span> -1
 1<span class=o>)</span> <span class=s2>&#34;four&#34;</span>
 2<span class=o>)</span> <span class=s2>&#34;four&#34;</span>
 3<span class=o>)</span> <span class=s2>&#34;three&#34;</span>
@@ -396,7 +396,7 @@ OK
 </span><span class=lnt> 8
 </span><span class=lnt> 9
 </span><span class=lnt>10
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; LRANGE list1 <span class=m>0</span> -1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; LRANGE list1 <span class=m>0</span> -1
 1<span class=o>)</span> <span class=s2>&#34;hello3&#34;</span>
 2<span class=o>)</span> <span class=s2>&#34;hello2&#34;</span>
 3<span class=o>)</span> <span class=s2>&#34;hello1&#34;</span>
@@ -425,7 +425,7 @@ OK
 </span><span class=lnt>17
 </span><span class=lnt>18
 </span><span class=lnt>19
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; lpush list <span class=s2>&#34;hello&#34;</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; lpush list <span class=s2>&#34;hello&#34;</span>
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
 127.0.0.1:6379&gt; lpush list <span class=s2>&#34;hello1&#34;</span>
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
@@ -456,7 +456,7 @@ OK
 </span><span class=lnt>10
 </span><span class=lnt>11
 </span><span class=lnt>12
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; exists list
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; exists list
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
 127.0.0.1:6379&gt; lpush list value1
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
@@ -488,7 +488,7 @@ OK
 </span><span class=lnt>18
 </span><span class=lnt>19
 </span><span class=lnt>20
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; lpush list value
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; lpush list value
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
 127.0.0.1:6379&gt; lpush list value1
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
@@ -522,7 +522,7 @@ OK
 </span><span class=lnt>12
 </span><span class=lnt>13
 </span><span class=lnt>14
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; sadd myset <span class=s2>&#34;hello&#34;</span>	<span class=c1># set集合中添加值</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; sadd myset <span class=s2>&#34;hello&#34;</span>	<span class=c1># set集合中添加值</span>
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
 127.0.0.1:6379&gt; sadd myset <span class=s2>&#34;world&#34;</span> <span class=s2>&#34;qimignton&#34;</span>
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
@@ -545,7 +545,7 @@ OK
 </span><span class=lnt>7
 </span><span class=lnt>8
 </span><span class=lnt>9
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; smembers myset
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; smembers myset
 1<span class=o>)</span> <span class=s2>&#34;world&#34;</span>
 2<span class=o>)</span> <span class=s2>&#34;qimignton&#34;</span>
 3<span class=o>)</span> <span class=s2>&#34;hello&#34;</span>
@@ -571,7 +571,7 @@ OK
 </span><span class=lnt>15
 </span><span class=lnt>16
 </span><span class=lnt>17
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; smembers myset
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; smembers myset
 1<span class=o>)</span> <span class=s2>&#34;welcome&#34;</span>
 2<span class=o>)</span> <span class=s2>&#34;hello&#34;</span>
 3<span class=o>)</span> <span class=s2>&#34;the&#34;</span>
@@ -593,7 +593,7 @@ OK
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; srandmember myset
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; srandmember myset
 <span class=s2>&#34;world&#34;</span>
 127.0.0.1:6379&gt; srandmember myset <span class=m>2</span>
 1<span class=o>)</span> <span class=s2>&#34;world&#34;</span>
@@ -616,7 +616,7 @@ OK
 </span><span class=lnt>16
 </span><span class=lnt>17
 </span><span class=lnt>18
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; smembers myset
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; smembers myset
 1<span class=o>)</span> <span class=s2>&#34;the&#34;</span>
 2<span class=o>)</span> <span class=s2>&#34;place&#34;</span>
 3<span class=o>)</span> <span class=s2>&#34;qimington&#34;</span>
@@ -652,7 +652,7 @@ OK
 </span><span class=lnt>16
 </span><span class=lnt>17
 </span><span class=lnt>18
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; smembers set1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; smembers set1
 1<span class=o>)</span> <span class=s2>&#34;world&#34;</span>
 2<span class=o>)</span> <span class=s2>&#34;qimington&#34;</span>
 3<span class=o>)</span> <span class=s2>&#34;hello&#34;</span>
@@ -699,7 +699,7 @@ OK
 </span><span class=lnt>27
 </span><span class=lnt>28
 </span><span class=lnt>29
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; hset myhash field1 <span class=s2>&#34;qimington&#34;</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; hset myhash field1 <span class=s2>&#34;qimington&#34;</span>
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
 127.0.0.1:6379&gt; hget myhash field1
 <span class=s2>&#34;qimington&#34;</span>
@@ -734,7 +734,7 @@ OK
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; hset myhash field <span class=m>5</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; hset myhash field <span class=m>5</span>
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
 127.0.0.1:6379&gt; hincrby myhash field <span class=m>1</span>
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>6</span>
@@ -744,7 +744,7 @@ OK
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; hsetnx myhash field1 hello	<span class=c1># 如果不存在则可以设置，否则不可以设置</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; hsetnx myhash field1 hello	<span class=c1># 如果不存在则可以设置，否则不可以设置</span>
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
 127.0.0.1:6379&gt; hsetnx myhash field1 hello
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
@@ -756,7 +756,7 @@ OK
 </span><span class=lnt>6
 </span><span class=lnt>7
 </span><span class=lnt>8
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; zadd myset <span class=m>1</span> one
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; zadd myset <span class=m>1</span> one
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
 127.0.0.1:6379&gt; zadd myset <span class=m>1</span> two <span class=m>3</span> three
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>2</span>
@@ -803,7 +803,7 @@ OK
 </span><span class=lnt>37
 </span><span class=lnt>38
 </span><span class=lnt>39
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; zadd salary <span class=m>2500</span> xiaohong	<span class=c1># 添加三个</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; zadd salary <span class=m>2500</span> xiaohong	<span class=c1># 添加三个</span>
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
 127.0.0.1:6379&gt; zadd salary <span class=m>5000</span> zhangsan
 <span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
@@ -860,7 +860,7 @@ OK
 </span><span class=lnt>16
 </span><span class=lnt>17
 </span><span class=lnt>18
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>127.0.0.1:6379&gt; zrange salary <span class=m>0</span> -1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; zrange salary <span class=m>0</span> -1
 1<span class=o>)</span> <span class=s2>&#34;lisi&#34;</span>
 2<span class=o>)</span> <span class=s2>&#34;xiaohong&#34;</span>
 3<span class=o>)</span> <span class=s2>&#34;zhangsan&#34;</span>

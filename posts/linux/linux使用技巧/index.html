@@ -18,7 +18,7 @@
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 查看动态日志</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 查看动态日志</span>
 tail -F 文件名字
 <span class=c1># 查看文件</span>
 cat 文件
@@ -29,7 +29,7 @@ find -name 路径
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 查看端口进程</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 查看端口进程</span>
 <span class=c1># 端口(eg:8080)</span>
 netstat -nltp<span class=p>|</span>grep 端口号
 <span class=c1># 进程(eg:java)</span>
@@ -41,7 +41,7 @@ ps -aux<span class=p>|</span>grep 进程名
 </span><span class=lnt>5
 </span><span class=lnt>6
 </span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 命令</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 命令</span>
 cp -r 目录名称 目录拷贝的目标位置 <span class=c1># -r代表递归</span>
 <span class=c1># 示例</span>
 <span class=c1># 将/usr/tmp目录下的aaa目录复制到/usr目录下面</span>
@@ -53,7 +53,7 @@ cp -r /usr/temp/aaa /usr
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 命令</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 命令</span>
 find 目录 参数 文件名称
 <span class=c1># 示例</span>
 <span class=c1># 查找/usr/temp目录下的所有以a开头的目录或文件</span>
@@ -63,14 +63,14 @@ find /usrtemp -name <span class=s1>&#39;a*&#39;</span>
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 命令</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 命令</span>
 touch 文件名
 <span class=c1># 示例</span>
 <span class=c1># 在当前目录创建一个名为aa.txt的文件</span>
 touch aa.txt
 </code></pre></td></tr></table></div></div><h2 id=删除文件>删除文件</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 命令</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 命令</span>
 rm -rf 文件名
 </code></pre></td></tr></table></div></div><h2 id=修改文件vi或vim>修改文件，<em>vi</em>或<em>vim</em></h2><p>vi编辑器的三种模式</p><p>基本上vi可以分为三种状态，分别是命令模式（command mode）、插入模式（insert mode）和底行模式（last line mode）,各模式功能区别如下：</p><ol><li><p>命令行模式</p><p>控制屏幕光标的移动、字符、字或行的删除、查找、移动复制某区段及进入insert mode下，或者到last line mode，命令行模式下的常用命令：</p><ul><li>控制光标移动：⬆，⬇，⬅，➡</li><li>删除当前行：dd</li><li>查找：/字符</li><li>进入编辑模式：i o a</li><li>进入底行模式：:</li></ul></li><li><p>命令行模式</p><p>只有在insert mode下，才可以做文字输入，按[ESC]键盘可以回到命令模式。</p><p>编辑模式下常用命令：</p><ul><li>退出编辑模式回到命令行模式：ESC</li></ul></li><li><p>底行模式</p><p>将文件保存或退出vi，也可以设置编辑环境，如寻找字符串、列出行号等，底行模式下常用命令：</p><ul><li>退出编辑：:q</li><li>强制退出：:q!</li><li>保存并退出：:wq</li></ul></li></ol><h2 id=打开文件>打开文件</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
@@ -79,7 +79,7 @@ rm -rf 文件名
 </span><span class=lnt>5
 </span><span class=lnt>6
 </span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 命令</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 命令</span>
 vi 文件名
 <span class=c1># 示例</span>
 <span class=c1># 打开当前目录下的aa.txt文件</span>
@@ -105,7 +105,7 @@ vi aa.txt 或者 vim aa.txt
 </span><span class=lnt>17
 </span><span class=lnt>18
 </span><span class=lnt>19
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># cat：查看最后一屏</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># cat：查看最后一屏</span>
 <span class=c1># 示例</span>
 <span class=c1># 使用cat查看/etc/sudo.conf文件，只能显示最后一屏内容</span>
 cat /etc/sudo.conf
