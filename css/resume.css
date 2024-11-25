@@ -1,0 +1,36 @@
+#content {
+    font-family: "SimSun", "Songti SC", serif;
+    margin: 0;
+    padding: 0;
+}
+
+.h1-font {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.h2-font {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px 0;
+    text-align: left;
+}
+
+.h3-font {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.p-font {
+    font-size: 12px;
+    text-indent: 2em;
+    line-height: 1.75;
+    margin-bottom: 10px;
+}
+
+.small-font {
+    font-size: 11px;
+}
