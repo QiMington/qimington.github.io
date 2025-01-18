@@ -1,0 +1,20 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>SpringBoot - 标签 - QiMington's</title><link>/tags/springboot/</link><description>SpringBoot - 标签 - QiMington's</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 21 Oct 2022 10:14:40 +0800</lastBuildDate><atom:link href="/tags/springboot/" rel="self" type="application/rss+xml"/><item><title>启动jar包时参数配置</title><link>/posts/springboot/%E5%90%AF%E5%8A%A8jar%E5%8C%85%E6%97%B6%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/</link><pubDate>Fri, 21 Oct 2022 10:14:40 +0800</pubDate><author>QiMington</author><guid>/posts/springboot/%E5%90%AF%E5%8A%A8jar%E5%8C%85%E6%97%B6%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/</guid><description><![CDATA[【SpringBoot】java -jar xxx.jar 指定配置 springboot会按照下列优先级来
+springboot会按照下列优先级来加载application.property配置文件：优先级由高到低
+1、jar包同级目录的config目录下
+2、jar包同级目录的application.property
+3、classpath下的/config目录
+4、classpath下根目录的配置文件
+如果不想要这些目录下的配置文件为最高级，我们也可以自己使用如下命令指定配置文件：
+1  java -jar -Dspring.config.location=D:\config\config.properties demo-0.0.1-SNAPSHOT.jar   Windows 指定端口
+1  java -jar springboot.jar --server.port=8181   指定配置文件
+1  java -jar springboot.jar --spring.profiles.active=dev   同时指定端口与配置文件
+1  java -jar springboot.jar --server.port=8181 --spring.profiles.active=dev   Linux 后台服务方式启动
+1  nohup java -jar springboot.jar --server.port=8181 &gt;outlog.log 2&gt;&amp;1 &amp;   加载服务器配置文件application-dev.yml
+1  nohup java -Dserver.port=8086 -Dspring.config.additional-location=./application-dev.yml -jar .]]></description></item><item><title>好用的设置</title><link>/posts/springboot/%E5%A5%BD%E7%94%A8%E7%9A%84%E8%AE%BE%E7%BD%AE/</link><pubDate>Tue, 05 Jul 2022 17:56:40 +0800</pubDate><author>QiMington</author><guid>/posts/springboot/%E5%A5%BD%E7%94%A8%E7%9A%84%E8%AE%BE%E7%BD%AE/</guid><description><![CDATA[更换默认web服务器 首先排除web依赖中默认的tomacat服务器，之后再映入替换的web服务器（这里选择的是undertow）。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14  &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt; &lt;exclusions&gt; &lt;exclusion&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt; &lt;/exclusion&gt; &lt;/exclusions&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-undertow&lt;/artifactId&gt; &lt;/dependency&gt;   在父工程中管理子工程的依赖 在父工程中的properties标签中统一位置确定依赖包的版本号（推荐），在dependencyManagement管理依赖包。注意：此时依赖包没有被引入才能够木中
+在子工程中使用groupId和artifactId引入依赖包，无需指定version。此时依赖包被引入对应的工程中。
+relativePath详解 1.不加：默认是 ../pom.xml
+2.在此指定
+指定后将在文件系统从指定位置查找，然后是本地仓库，最后是远程仓库
+(优先级 指定位置 &gt; 本地仓库 &gt; 远程仓库)
+3.加上标签关闭这个特性（feature） ，将永远从repositories解析读取parent POM]]></description></item></channel></rss>

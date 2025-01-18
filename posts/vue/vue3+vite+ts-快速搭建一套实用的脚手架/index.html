@@ -1,0 +1,1113 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>Vue3+Vite+TS 快速搭建一套实用的脚手架 - QiMington's</title><meta name=keywords content="贺兴宇,QiMington,启明顿,个人博客,blog.qimington.com"><meta name=description content="我在这里分享一些有趣的东西，寻找志同道合的朋友。I am here to share some interesting things and find like-minded friends."><meta property="og:title" content="Vue3+Vite+TS 快速搭建一套实用的脚手架"><meta property="og:description" content="技术栈
+   开发工具：VSCode
+  代码管理：Git
+  前端框架：Vue3
+  构建工具：Vite
+  路由：vue-router 4x
+  状态管理：vuex 4x
+  AJAX：axios
+  UI库：element-plus
+  数据模拟：mockjs
+  代码规范：eslint
+  代码格式化：Prettier
+  css预处理：sass
+   开始构建
+ 1. 初始化项目 [ 安装yarn ]
+1  npm i yarn -g   安装vite：
+1 2 3  npm init vite@latest [ProjectName] or yarn create vite [ProjectName]   安装完成后vite会引导我们创建一个项目，输入项目名称，package名称，然后选择项目使用的框架，这里有多个选项，选择Vue："><meta property="og:type" content="article"><meta property="og:url" content="/posts/vue/vue3+vite+ts-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E5%AE%9E%E7%94%A8%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6/"><meta property="article:published_time" content="2022-11-06T11:32:40+08:00"><meta property="article:modified_time" content="2022-11-06T11:32:40+08:00"><meta property="og:site_name" content="QiMington's"><meta name=twitter:card content="summary"><meta name=twitter:title content="Vue3+Vite+TS 快速搭建一套实用的脚手架"><meta name=twitter:description content="技术栈
+   开发工具：VSCode
+  代码管理：Git
+  前端框架：Vue3
+  构建工具：Vite
+  路由：vue-router 4x
+  状态管理：vuex 4x
+  AJAX：axios
+  UI库：element-plus
+  数据模拟：mockjs
+  代码规范：eslint
+  代码格式化：Prettier
+  css预处理：sass
+   开始构建
+ 1. 初始化项目 [ 安装yarn ]
+1  npm i yarn -g   安装vite：
+1 2 3  npm init vite@latest [ProjectName] or yarn create vite [ProjectName]   安装完成后vite会引导我们创建一个项目，输入项目名称，package名称，然后选择项目使用的框架，这里有多个选项，选择Vue："><meta name=application-name content="QiMington's"><meta name=apple-mobile-web-app-title content="QiMington's"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=/avatar.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=/posts/vue/vue3+vite+ts-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E5%AE%9E%E7%94%A8%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6/><link rel=prev href=/posts/docker/docker%E7%AC%94%E8%AE%B0/><link rel=next href=/posts/vue/vue3%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css><meta name=google-site-verification content="gKS_lOzqrL6dS6WciO5_y1FmkXkuK6581tNNUSFvYq4"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Vue3+Vite+TS 快速搭建一套实用的脚手架","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"\/posts\/vue\/vue3\x2bvite\x2bts-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E5%AE%9E%E7%94%A8%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6\/"},"genre":"posts","keywords":"Vue3, Vite, ts","wordcount":2075,"url":"\/posts\/vue\/vue3\x2bvite\x2bts-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E5%AE%9E%E7%94%A8%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6\/","datePublished":"2022-11-06T11:32:40+08:00","dateModified":"2022-11-06T11:32:40+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"QiMington"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="QiMington's">QiMington</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="QiMington's">QiMington</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/>首页</a><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Vue3+Vite+TS 快速搭建一套实用的脚手架</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>QiMington</a>
+</span>&nbsp;<span class=post-category>收录于 <a href=/categories/vue3/><i class="far fa-folder fa-fw" aria-hidden=true></i>Vue3</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2022-11-06>2022-11-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 2075 字&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 10 分钟&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-初始化项目>1. 初始化项目</a></li><li><a href=#2-代码校验>2. 代码校验</a></li><li><a href=#3代码格式化>3.代码格式化</a></li><li><a href=#4配置路由>4.配置路由</a></li><li><a href=#5配置状态管理器>5.配置状态管理器</a><ul><li><a href=#vuex>vuex</a></li><li><a href=#pinia>pinia</a></li></ul></li><li><a href=#6element-plus>6.element-plus</a></li><li><a href=#7封装axios>7.封装axios</a></li><li><a href=#8mockjs>8.mockjs</a></li><li><a href=#9css预处理>9.css预处理</a></li></ul></nav></div></div><div class=content id=content><blockquote><p>技术栈</p></blockquote><ul><li><p>开发工具：VSCode</p></li><li><p>代码管理：Git</p></li><li><p>前端框架：Vue3</p></li><li><p>构建工具：Vite</p></li><li><p>路由：vue-router 4x</p></li><li><p>状态管理：vuex 4x</p></li><li><p>AJAX：axios</p></li><li><p>UI库：element-plus</p></li><li><p>数据模拟：mockjs</p></li><li><p>代码规范：eslint</p></li><li><p>代码格式化：Prettier</p></li><li><p>css预处理：sass</p></li></ul><blockquote><p>开始构建</p></blockquote><h2 id=1-初始化项目>1. 初始化项目</h2><p>[ 安装yarn ]</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm i yarn -g
+</code></pre></td></tr></table></div></div><p>安装vite：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm init vite@latest <span class=o>[</span>ProjectName<span class=o>]</span>
+or
+yarn create vite <span class=o>[</span>ProjectName<span class=o>]</span>
+</code></pre></td></tr></table></div></div><p>安装完成后vite会引导我们创建一个项目，输入项目名称，package名称，然后选择项目使用的框架，这里有多个选项，选择Vue：</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106112928088.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106112928088.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106112928088.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106112928088.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106112928088.png title=image-20221106112928088></p><p>之后提示选择vue还是vue-ts，这里我们选择vue-ts（如果不用ts就直接选vue）</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106112952222.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106112952222.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106112952222.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106112952222.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106112952222.png title=image-20221106112952222></p><p>项目创建成功，打开项目并初始化：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=nb>cd</span> vite-cloud-admin
+npm install
+<span class=o>[</span>or yarn<span class=o>]</span>
+</code></pre></td></tr></table></div></div><p>成功后运行项目：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm run dev
+<span class=o>[</span>or yarn dev<span class=o>]</span>
+</code></pre></td></tr></table></div></div><p>一个Vue3+Vite+TS的项目就创建成功了：</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113048690.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113048690.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113048690.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113048690.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113048690.png title=image-20221106113048690></p><p>配置所需依赖（用于处理别名不生效问题）：</p><pre><code class=language-shel data-lang=shel>npm install @types/node --D
+[or yarn add @types/node --D]
+</code></pre><p>修改vite.config.ts配置文件代码</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>import</span> <span class=p>{</span> <span class=nx>defineConfig</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;vite&#39;</span>
+<span class=kr>import</span> <span class=nx>vue</span> <span class=nx>from</span> <span class=s1>&#39;@vitejs/plugin-vue&#39;</span>
+<span class=kr>import</span> <span class=p>{</span> <span class=nx>resolve</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;path&#39;</span>
+
+<span class=kr>export</span> <span class=k>default</span> <span class=nx>defineConfig</span><span class=p>(</span><span class=p>{</span>
+  <span class=nx>plugins</span><span class=o>:</span> <span class=p>[</span><span class=nx>vue</span><span class=p>(</span><span class=p>)</span><span class=p>]</span><span class=p>,</span>
+  <span class=nx>base</span><span class=o>:</span> <span class=s1>&#39;./&#39;</span><span class=p>,</span>	<span class=c1>//不加打包后白屏
+</span><span class=c1></span>  <span class=nx>server</span><span class=o>:</span> <span class=p>{</span>
+    <span class=c1>//解决“vite use `--host` to expose”
+</span><span class=c1></span>    <span class=nx>host</span><span class=o>:</span> <span class=s1>&#39;0.0.0.0&#39;</span><span class=p>,</span>	
+    <span class=c1>// port: 8080,      
+</span><span class=c1></span>    <span class=nx>open</span>: <span class=kt>true</span><span class=p>,</span>
+    <span class=nx>proxy</span><span class=o>:</span> <span class=p>{</span>          <span class=c1>// 代理
+</span><span class=c1></span>      <span class=s1>&#39;/api&#39;</span><span class=o>:</span> <span class=p>{</span>
+        <span class=nx>target</span><span class=o>:</span> <span class=s1>&#39;真实接口服务地址&#39;</span><span class=p>,</span>
+        <span class=nx>changeOrigin</span>: <span class=kt>true</span><span class=p>,</span>
+        <span class=nx>rewrite</span><span class=o>:</span> <span class=p>(</span><span class=nx>path</span><span class=p>)</span> <span class=o>=</span><span class=o>&gt;</span> <span class=nx>path</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=sr>/^\/api/</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span>     <span class=c1>// 注意代理地址的重写
+</span><span class=c1></span>      <span class=p>}</span><span class=p>,</span>
+      <span class=c1>// 可配置多个... 
+</span><span class=c1></span>    <span class=p>}</span>
+  <span class=p>}</span><span class=p>,</span>
+  <span class=nx>resolve</span><span class=o>:</span><span class=p>{</span>   
+    <span class=c1>//别名配置，引用src路径下的东西可以通过@如：import Layout from &#39;@/layout/index.vue&#39;
+</span><span class=c1></span>    <span class=nx>alias</span><span class=o>:</span><span class=p>[</span>   
+      <span class=p>{</span>
+        <span class=nx>find</span><span class=o>:</span><span class=s1>&#39;@&#39;</span><span class=p>,</span>
+        <span class=nx>replacement</span>:<span class=kt>resolve</span><span class=p>(</span><span class=nx>__dirname</span><span class=p>,</span><span class=s1>&#39;src&#39;</span><span class=p>)</span> 
+      <span class=p>}</span>
+    <span class=p>]</span>
+  <span class=p>}</span>
+<span class=p>}</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>配置tsconfig.json文件</p><ol><li>这一步是用来解决 “报错：找不到模块“xxx”或其相应的类型声明” 的</li><li>配置 “baseUrl 和 paths” 项</li><li>paths 里的内容根据别名来进行相关配置</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=p>{</span>
+  <span class=s2>&#34;compilerOptions&#34;</span><span class=o>:</span> <span class=p>{</span>
+    <span class=s2>&#34;target&#34;</span><span class=o>:</span> <span class=s2>&#34;ESNext&#34;</span><span class=p>,</span>
+    <span class=s2>&#34;useDefineForClassFields&#34;</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+    <span class=s2>&#34;module&#34;</span><span class=o>:</span> <span class=s2>&#34;ESNext&#34;</span><span class=p>,</span>
+    <span class=s2>&#34;moduleResolution&#34;</span><span class=o>:</span> <span class=s2>&#34;Node&#34;</span><span class=p>,</span>
+    <span class=s2>&#34;strict&#34;</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+    <span class=s2>&#34;jsx&#34;</span><span class=o>:</span> <span class=s2>&#34;preserve&#34;</span><span class=p>,</span>
+    <span class=s2>&#34;resolveJsonModule&#34;</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+    <span class=s2>&#34;isolatedModules&#34;</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+    <span class=s2>&#34;esModuleInterop&#34;</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+    <span class=s2>&#34;lib&#34;</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;ESNext&#34;</span><span class=p>,</span> <span class=s2>&#34;DOM&#34;</span><span class=p>]</span><span class=p>,</span>
+    <span class=s2>&#34;skipLibCheck&#34;</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+    <span class=s2>&#34;noEmit&#34;</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+    <span class=s2>&#34;baseUrl&#34;</span><span class=o>:</span> <span class=s2>&#34;.&#34;</span><span class=p>,</span>  						<span class=c1>// 这块
+</span><span class=c1></span>    <span class=s2>&#34;paths&#34;</span><span class=o>:</span> <span class=p>{</span>								<span class=c1>// 这块
+</span><span class=c1></span>      <span class=s2>&#34;@/*&#34;</span><span class=o>:</span><span class=p>[</span><span class=s2>&#34;src/*&#34;</span><span class=p>]</span><span class=p>,</span>
+      <span class=c1>// &#34;components&#34;:[&#34;src/components/*&#34;],
+</span><span class=c1></span>      <span class=c1>// &#34;pinia/*&#34;:[&#34;src/pinia/*&#34;]
+</span><span class=c1></span>    <span class=p>}</span>
+  <span class=p>}</span><span class=p>,</span>
+  <span class=s2>&#34;include&#34;</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;src/**/*.ts&#34;</span><span class=p>,</span> <span class=s2>&#34;src/**/*.d.ts&#34;</span><span class=p>,</span> <span class=s2>&#34;src/**/*.tsx&#34;</span><span class=p>,</span> <span class=s2>&#34;src/**/*.vue&#34;</span><span class=p>]</span><span class=p>,</span>
+  <span class=s2>&#34;references&#34;</span><span class=o>:</span> <span class=p>[</span><span class=p>{</span> <span class=s2>&#34;path&#34;</span><span class=o>:</span> <span class=s2>&#34;./tsconfig.node.json&#34;</span> <span class=p>}</span><span class=p>]</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h2 id=2-代码校验>2. 代码校验</h2><p>首先安装eslint：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm i eslint
+<span class=o>[</span>or yarn add eslint<span class=o>]</span>
+</code></pre></td></tr></table></div></div><p>初始化eslint</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npx eslint --init
+<span class=o>[</span>or yarn eslint --init<span class=o>]</span>
+</code></pre></td></tr></table></div></div><p>然后会问我们如何使用eslint，选择第三项，检查语法、发现问题并强制执行代码样式</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113231307.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113231307.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113231307.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113231307.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113231307.png title=image-20221106113231307></p><p>什么样子的模块引入方式，这里选择第一项，import/export</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113239656.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113239656.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113239656.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113239656.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113239656.png title=image-20221106113239656></p><p>然后问我们用什么框架，这里选择Vue.js</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113256553.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113256553.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113256553.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113256553.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113256553.png title=image-20221106113256553></p><p>是否使用TS，YES</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113308328.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113308328.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113308328.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113308328.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113308328.png title=image-20221106113308328></p><p>代码运行在哪里，选择浏览器</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113317259.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113317259.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113317259.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113317259.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113317259.png title=image-20221106113317259></p><p>然后问我们使用什么代码格式，这里我们选择流行代码格式中的Standard</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20230211000520208.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20230211000520208.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20230211000520208.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20230211000520208.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20230211000520208.png title=image-20230211000520208></p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113326664.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113326664.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113326664.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113326664.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113326664.png title=image-20221106113326664></p><p>选择eslintrc文件的格式，这里选择JavaScript</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113336174.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113336174.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113336174.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113336174.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113336174.png title=image-20221106113336174></p><p>立即初始化，YES</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113345763.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113345763.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113345763.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113345763.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106113345763.png title=image-20221106113345763></p><p>这样我们的eslint就安装完成了，不过由于vue3的语法规则和vue2不同，有些情况下我们的正常开发也会报错，所以需要在.eslintrc.cjs文件的rules里面添加如下配置：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>  rules: <span class=o>{</span>
+    <span class=s1>&#39;vue/no-multiple-template-root&#39;</span>: 0,
+    <span class=s1>&#39;no-unused-vars&#39;</span>: <span class=o>[</span>
+      <span class=s1>&#39;error&#39;</span>,
+      // we are only using this rule to check <span class=k>for</span> unused arguments since TS
+      // catches unused variables but not args.
+      <span class=o>{</span> varsIgnorePattern: <span class=s1>&#39;.*&#39;</span>, args: <span class=s1>&#39;none&#39;</span> <span class=o>}</span>
+    <span class=o>]</span>
+  <span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>第一项是因为vue3允许template下面有多个标签，第二个是script setup标签下，定义的变量或方法如果未使用会报错，但其实这些方法和变量可以直接在template中使用的。</p><p>在overrides中可以指定具体目录下的规则</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>overrides: <span class=o>[</span>
+    <span class=o>{</span>
+        files: <span class=o>[</span><span class=s2>&#34;src/views/**/*.vue&#34;</span><span class=o>]</span>,
+        rules: <span class=o>{</span>
+        	<span class=s2>&#34;vue/multi-word-component-names&#34;</span>: <span class=m>0</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+<span class=o>]</span>,
+</code></pre></td></tr></table></div></div><p>“off” or 0 - 关闭(禁用)规则
+“warn” or 1 - 将规则视为一个警告（并不会导致检查不通过）
+“error” or 2 - 将规则视为一个错误 (退出码为1，检查不通过)</p><p><strong>修改配置文件后记得重启服务器 才会生效</strong></p><h2 id=3代码格式化>3.代码格式化</h2><p>安装prettier：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm i prettier
+<span class=o>[</span>or yarn add prettier<span class=o>]</span>
+</code></pre></td></tr></table></div></div><p>然后在根目录创建.prettierrc文件，配置如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=o>{</span>
+  <span class=s2>&#34;semi&#34;</span>: false,
+  <span class=s2>&#34;singleQuote&#34;</span>: true,
+  <span class=s2>&#34;trailingComma&#34;</span>: <span class=s2>&#34;none&#34;</span>,
+  <span class=s2>&#34;printWidth&#34;</span>: 100,
+  <span class=s2>&#34;bracketSpacing&#34;</span>: true,
+  <span class=s2>&#34;jsxBracketSameLine&#34;</span>: true,
+  <span class=s2>&#34;useEditorConfig&#34;</span>: true,
+  <span class=s2>&#34;useTabs&#34;</span>: false,
+  <span class=s2>&#34;vueIndentScriptAndStyle&#34;</span>: true,
+  <span class=s2>&#34;arrowParens&#34;</span>: <span class=s2>&#34;avoid&#34;</span>,
+  <span class=s2>&#34;htmlWhitespaceSensitivity&#34;</span>: <span class=s2>&#34;ignore&#34;</span>,
+  <span class=s2>&#34;overrides&#34;</span>: <span class=o>[</span>
+    <span class=o>{</span>
+      <span class=s2>&#34;files&#34;</span>: <span class=s2>&#34;.prettierrc&#34;</span>
+    <span class=o>}</span>
+  <span class=o>]</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>配置完成后可以在vscode安装Prettier插件，实现保存自动格式化文件。
+完成后保存文件发现报错了，这是因为Prettier格式化后的代码与eslint规范冲突，这里我们使用<code>eslint-config-prettier</code>这个插件解决这个问题，安装插件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm i eslint-config-prettier -D
+<span class=o>[</span>or yarn add eslint-config-prettier -D<span class=o>]</span>
+</code></pre></td></tr></table></div></div><p>安装完成后还需要在<code>.eslintrc.cjs</code>文件中加上一段配置才能生效，这里就直接把整个<code>.eslintrc.cjs</code>拷上来了：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>module.exports <span class=o>=</span> <span class=o>{</span>
+  env: <span class=o>{</span>
+    browser: true,
+    es2021: <span class=nb>true</span>
+  <span class=o>}</span>,
+  extends: <span class=o>[</span>
+    <span class=s1>&#39;plugin:vue/essential&#39;</span>,
+    <span class=s1>&#39;standard&#39;</span>,
+    <span class=s1>&#39;prettier&#39;</span> // 就是这段配置
+  <span class=o>]</span>,
+  parserOptions: <span class=o>{</span>
+    ecmaVersion: <span class=s1>&#39;latest&#39;</span>,
+    parser: <span class=s1>&#39;@typescript-eslint/parser&#39;</span>,
+    sourceType: <span class=s1>&#39;module&#39;</span>
+  <span class=o>}</span>,
+  plugins: <span class=o>[</span>
+    <span class=s1>&#39;vue&#39;</span>,
+    <span class=s1>&#39;@typescript-eslint&#39;</span>
+  <span class=o>]</span>,
+  rules: <span class=o>{</span>
+    <span class=s1>&#39;vue/no-multiple-template-root&#39;</span>: 0,
+    <span class=s1>&#39;no-unused-vars&#39;</span>: <span class=o>[</span>
+      <span class=s1>&#39;error&#39;</span>,
+      // we are only using this rule to check <span class=k>for</span> unused arguments since TS
+      // catches unused variables but not args.
+      <span class=o>{</span> varsIgnorePattern: <span class=s1>&#39;.*&#39;</span>, args: <span class=s1>&#39;none&#39;</span> <span class=o>}</span>
+    <span class=o>]</span>
+  <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>至此，代码格式化及校验就完成了。</p><h2 id=4配置路由>4.配置路由</h2><p>直接安装vue-router</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm install vue-router@4
+<span class=o>[</span>or yarn add vue-router@4<span class=o>]</span>
+</code></pre></td></tr></table></div></div><p>在src文件夹下新建router目录，并在目录下新建index.ts文件，并做如下配置：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>// index.ts
+import <span class=o>{</span> createRouter, createWebHashHistory <span class=o>}</span> from <span class=s1>&#39;vue-router&#39;</span>
+import HelloWorld from <span class=s1>&#39;../components/HelloWorld.vue&#39;</span>
+
+const <span class=nv>routes</span> <span class=o>=</span> <span class=o>[</span><span class=o>{</span> path: <span class=s1>&#39;/&#39;</span>, component: HelloWorld <span class=o>}</span><span class=o>]</span>
+
+<span class=nb>export</span> default createRouter<span class=o>(</span><span class=o>{</span>
+  history: createWebHashHistory<span class=o>(</span><span class=o>)</span>,
+  routes
+<span class=o>}</span><span class=o>)</span>
+</code></pre></td></tr></table></div></div><p>在main.ts中引入该文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>// main.ts
+import <span class=o>{</span> createApp <span class=o>}</span> from <span class=s1>&#39;vue&#39;</span>
+import App from <span class=s1>&#39;./App.vue&#39;</span>
+import router from <span class=s1>&#39;./router&#39;</span>
+
+const <span class=nv>app</span> <span class=o>=</span> createApp<span class=o>(</span>App<span class=o>)</span>
+app.use<span class=o>(</span>router<span class=o>)</span>
+app.mount<span class=o>(</span><span class=s1>&#39;#app&#39;</span><span class=o>)</span>
+</code></pre></td></tr></table></div></div><p>在App.vue里添加router-view标签：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>// App.vue
+&lt;template&gt;
+  &lt;router-view&gt;&lt;/router-view&gt;
+&lt;/template&gt;
+
+&lt;script setup <span class=nv>lang</span><span class=o>=</span><span class=s2>&#34;ts&#34;</span>&gt;&lt;/script&gt;
+
+&lt;style&gt;
+  <span class=c1>#app {</span>
+    font-family: Avenir, Helvetica, Arial, sans-serif<span class=p>;</span>
+    -webkit-font-smoothing: antialiased<span class=p>;</span>
+    -moz-osx-font-smoothing: grayscale<span class=p>;</span>
+    text-align: center<span class=p>;</span>
+    color: <span class=c1>#2c3e50;</span>
+    margin-top: 60px<span class=p>;</span>
+  <span class=o>}</span>
+&lt;/style&gt;
+</code></pre></td></tr></table></div></div><p>启动下，看下是否生效：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm run dev
+</code></pre></td></tr></table></div></div><p>因为我们在App.vue中去掉了HelloWorld组件的引入，改用router的形式，如果界面还能显示出来，就说明配置成功了。</p><h2 id=5配置状态管理器>5.配置状态管理器</h2><h3 id=vuex>vuex</h3><p>首先安装vuex，默认的还是3x版本，vue3是不支持的，这里需要这样安装：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm install vuex@next -S
+<span class=o>[</span>yarn add vuex@next -S<span class=o>]</span>
+</code></pre></td></tr></table></div></div><p>安装完成后在src文件夹下新建store文件夹，然后新建index.ts文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>// store/index.ts
+import <span class=o>{</span> createStore <span class=o>}</span> from <span class=s1>&#39;vuex&#39;</span>
+
+const <span class=nv>store</span> <span class=o>=</span> createStore<span class=o>(</span><span class=o>{</span>
+  state<span class=o>(</span><span class=o>)</span> <span class=o>{</span>
+    <span class=k>return</span> <span class=o>{</span>
+      count: <span class=m>0</span>
+    <span class=o>}</span>
+  <span class=o>}</span>,
+  mutations: <span class=o>{</span>
+    increment<span class=o>(</span>state: any<span class=o>)</span> <span class=o>{</span>
+      state.count++
+    <span class=o>}</span>
+  <span class=o>}</span>
+<span class=o>}</span><span class=o>)</span>
+
+<span class=nb>export</span> default store
+</code></pre></td></tr></table></div></div><p>在main.ts文件中引入store：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>// main.ts
+import <span class=o>{</span> createApp <span class=o>}</span> from <span class=s1>&#39;vue&#39;</span>
+import App from <span class=s1>&#39;./App.vue&#39;</span>
+import router from <span class=s1>&#39;./router&#39;</span>
+import store from <span class=s1>&#39;./store&#39;</span>
+
+const <span class=nv>app</span> <span class=o>=</span> createApp<span class=o>(</span>App<span class=o>)</span>
+app.use<span class=o>(</span>router<span class=o>)</span>
+app.use<span class=o>(</span>store<span class=o>)</span>
+app.mount<span class=o>(</span><span class=s1>&#39;#app&#39;</span><span class=o>)</span>
+</code></pre></td></tr></table></div></div><p>引入完成后，我们还需要测试下有没有生效，改写下HelloWorld组件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>&lt;!--HelloWorld.vue--&gt;
+&lt;template&gt;
+  &lt;button <span class=nv>type</span><span class=o>=</span><span class=s2>&#34;button&#34;</span> @click<span class=o>=</span><span class=s2>&#34;onClick&#34;</span>&gt;count is: <span class=o>{</span><span class=o>{</span> count <span class=o>}</span><span class=o>}</span>&lt;/button&gt;
+&lt;/template&gt;
+
+&lt;script setup <span class=nv>lang</span><span class=o>=</span><span class=s2>&#34;ts&#34;</span>&gt;
+  import <span class=o>{</span> computed <span class=o>}</span> from <span class=s1>&#39;vue&#39;</span>
+  import <span class=o>{</span> useStore <span class=o>}</span> from <span class=s1>&#39;vuex&#39;</span>
+
+  const <span class=nv>store</span> <span class=o>=</span> useStore<span class=o>(</span><span class=o>)</span>
+  const <span class=nv>count</span> <span class=o>=</span> computed<span class=o>(</span><span class=o>(</span><span class=o>)</span> <span class=o>=</span>&gt; <span class=o>{</span>
+    <span class=k>return</span> store.state.count
+  <span class=o>}</span><span class=o>)</span>
+  const <span class=nv>onClick</span> <span class=o>=</span> <span class=o>(</span><span class=o>)</span> <span class=o>=</span>&gt; <span class=o>{</span>
+    store.commit<span class=o>(</span><span class=s1>&#39;increment&#39;</span><span class=o>)</span>
+  <span class=o>}</span>
+&lt;/script&gt;
+</code></pre></td></tr></table></div></div><p>HelloWorld中引入了store，并且将store中的count挂载到页面上，点击按钮向store发送事件完成count的累加，实测没有问题，vuex安装成功。</p><h3 id=pinia>pinia</h3><p><strong>安装</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm install pinia
+<span class=o>[</span>or yarn ad<span class=o>]</span>
+</code></pre></td></tr></table></div></div><p>安装完之后，在src下建立pinia文件夹，新建index.ts文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>import</span> <span class=p>{</span> <span class=nx>createPinia</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;pinia&#39;</span>
+<span class=kr>const</span> <span class=nx>store</span> <span class=o>=</span> <span class=nx>createPinia</span><span class=p>(</span><span class=p>)</span>
+<span class=kr>export</span> <span class=k>default</span> <span class=nx>store</span>
+</code></pre></td></tr></table></div></div><p>在main.js中引入</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>import</span> <span class=p>{</span> <span class=nx>createApp</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;vue&#39;</span>
+<span class=kr>import</span> <span class=nx>App</span> <span class=nx>from</span> <span class=s1>&#39;./App.vue&#39;</span>
+<span class=kr>import</span> <span class=nx>pinia</span> <span class=nx>from</span> <span class=s1>&#39;./pinia&#39;</span>
+
+<span class=kr>const</span> <span class=nx>app</span> <span class=o>=</span> <span class=nx>createApp</span><span class=p>(</span><span class=nx>App</span><span class=p>)</span>
+<span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>pinia</span><span class=p>)</span>
+<span class=nx>app</span><span class=p>.</span><span class=nx>mount</span><span class=p>(</span><span class=s1>&#39;#app&#39;</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>使用，创建一个user.ts文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>import</span> <span class=p>{</span> <span class=nx>defineStore</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;pinia&#39;</span>
+
+<span class=c1>// useStore 可以是 useUser、useCart 之类的任何东西
+</span><span class=c1></span><span class=c1>// 第一个参数是应用程序中 store 的唯一 id
+</span><span class=c1></span><span class=kr>export</span> <span class=kr>const</span> <span class=nx>useStore</span> <span class=o>=</span> <span class=nx>defineStore</span><span class=p>(</span><span class=s1>&#39;main&#39;</span><span class=p>,</span> <span class=p>{</span>
+  <span class=c1>// 推荐使用 完整类型推断的箭头函数
+</span><span class=c1></span>    <span class=nx>state</span><span class=o>:</span> <span class=p>(</span><span class=p>)</span> <span class=o>=</span><span class=o>&gt;</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=p>{</span>
+            <span class=c1>// 所有这些属性都将自动推断其类型
+</span><span class=c1></span>            <span class=nx>counter</span>: <span class=kt>0</span><span class=p>,</span>
+            <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;Eduardo&#34;</span><span class=p>,</span>
+            <span class=nx>isAdmin</span>: <span class=kt>true</span><span class=p>,</span>
+        <span class=p>}</span><span class=p>;</span>
+    <span class=p>}</span><span class=p>,</span>
+<span class=p>}</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>使用store，我们正在 <em>定义</em> 一个 store，因为在 <code>setup()</code> 中调用 <code>useStore()</code> 之前不会创建 store：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>import</span> <span class=p>{</span> <span class=nx>useStore</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;@/pinia/user&#39;</span>
+<span class=kr>export</span> <span class=k>default</span> <span class=p>{</span>
+  <span class=nx>setup() {</span>
+    <span class=kr>const</span> <span class=nx>store</span> <span class=o>=</span> <span class=nx>useStore</span><span class=p>(</span><span class=p>)</span>
+
+    <span class=k>return</span> <span class=p>{</span>
+      <span class=c1>// 您可以返回整个 store 实例以在模板中使用它
+</span><span class=c1></span>      <span class=nx>store</span><span class=p>,</span>
+    <span class=p>}</span>
+  <span class=p>}</span><span class=p>,</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>结构store
+store 是一个用reactive 包裹的对象，这意味着不需要在getter 之后写.value，但是，就像setup 中的props 一样，我们不能对其进行解构</p><p>为了从 Store 中提取属性同时保持其响应式，需要使用storeToRefs()。 它将为任何响应式属性创建 refs。 当您仅使用 store 中的状态但不调用任何操作时，这很有用：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>import</span> <span class=p>{</span> <span class=nx>storeToRefs</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;pinia&#39;</span>
+
+<span class=kr>export</span> <span class=k>default</span> <span class=nx>defineComponent</span><span class=p>(</span><span class=p>{</span>
+  <span class=nx>setup() {</span>
+    <span class=kr>const</span> <span class=nx>store</span> <span class=o>=</span> <span class=nx>useStore</span><span class=p>(</span><span class=p>)</span>
+    <span class=c1>// `name` 和 `doubleCount` 是响应式引用
+</span><span class=c1></span>    <span class=c1>// 这也会为插件添加的属性创建引用
+</span><span class=c1></span>    <span class=c1>// 但跳过任何 action 或 非响应式（不是 ref/reactive）的属性
+</span><span class=c1></span>    <span class=kr>const</span> <span class=p>{</span> <span class=nx>name</span><span class=p>,</span> <span class=nx>doubleCount</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>storeToRefs</span><span class=p>(</span><span class=nx>store</span><span class=p>)</span>
+
+    <span class=k>return</span> <span class=p>{</span>
+      <span class=nx>name</span><span class=p>,</span>
+      <span class=nx>doubleCount</span>
+    <span class=p>}</span>
+  <span class=p>}</span><span class=p>,</span>
+<span class=p>}</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>state，大多数时候，state是store的核新部分</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>import</span> <span class=p>{</span> <span class=nx>defineStore</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;pinia&#39;</span>
+
+<span class=kr>const</span> <span class=nx>useStore</span> <span class=o>=</span> <span class=nx>defineStore</span><span class=p>(</span><span class=s1>&#39;storeId&#39;</span><span class=p>,</span> <span class=p>{</span>
+  <span class=c1>// 推荐使用 完整类型推断的箭头函数
+</span><span class=c1></span>  <span class=nx>state</span><span class=o>:</span> <span class=p>(</span><span class=p>)</span> <span class=o>=</span><span class=o>&gt;</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=p>{</span>
+      <span class=c1>// 所有这些属性都将自动推断其类型
+</span><span class=c1></span>      <span class=nx>counter</span>: <span class=kt>0</span><span class=p>,</span>
+      <span class=nx>name</span><span class=o>:</span> <span class=s1>&#39;Eduardo&#39;</span><span class=p>,</span>
+      <span class=nx>isAdmin</span>: <span class=kt>true</span><span class=p>,</span>
+    <span class=p>}</span>
+  <span class=p>}</span><span class=p>,</span>
+<span class=p>}</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>访问state</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>const</span> <span class=nx>store</span> <span class=o>=</span> <span class=nx>useStore</span><span class=p>(</span><span class=p>)</span>
+
+<span class=nx>store</span><span class=p>.</span><span class=nx>counter</span><span class=o>++</span>
+</code></pre></td></tr></table></div></div><p>重置状态</p><p>可以通过调用 store 上的 <code>$reset()</code> 方法将状态 <em>重置</em> 到其初始值：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>const</span> <span class=nx>store</span> <span class=o>=</span> <span class=nx>useStore</span><span class=p>(</span><span class=p>)</span>
+
+<span class=nx>store</span><span class=p>.</span><span class=nx>$reset</span><span class=p>(</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>改变状态</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=nx>store</span><span class=p>.</span><span class=nx>$patch</span><span class=p>(</span><span class=p>{</span>
+  <span class=nx>counter</span>: <span class=kt>store.counter</span> <span class=o>+</span> <span class=mi>1</span><span class=p>,</span>
+  <span class=nx>name</span><span class=o>:</span> <span class=s1>&#39;Abalam&#39;</span><span class=p>,</span>
+<span class=p>}</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>Actions</p><p>Actions 相当于组件中的 <a href=https://v3.vuejs.org/guide/data-methods.html#methods target=_blank rel="noopener noreffer">methods</a>
+。 它们可以使用 <code>defineStore()</code> 中的 <code>actions</code> 属性定义，并且它们非常适合定义业务逻辑：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>export</span> <span class=kr>const</span> <span class=nx>useStore</span> <span class=o>=</span> <span class=nx>defineStore</span><span class=p>(</span><span class=s1>&#39;main&#39;</span><span class=p>,</span> <span class=p>{</span>
+  <span class=nx>state</span><span class=o>:</span> <span class=p>(</span><span class=p>)</span> <span class=o>=</span><span class=o>&gt;</span> <span class=p>(</span><span class=p>{</span>
+    <span class=nx>counter</span>: <span class=kt>0</span><span class=p>,</span>
+  <span class=p>}</span><span class=p>)</span><span class=p>,</span>
+  <span class=nx>actions</span><span class=o>:</span> <span class=p>{</span>
+    <span class=nx>increment() {</span>
+      <span class=k>this</span><span class=p>.</span><span class=nx>counter</span><span class=o>++</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=nx>randomizeCounter() {</span>
+      <span class=k>this</span><span class=p>.</span><span class=nx>counter</span> <span class=o>=</span> <span class=nb>Math</span><span class=p>.</span><span class=nx>round</span><span class=p>(</span><span class=mi>100</span> <span class=o>*</span> <span class=nb>Math</span><span class=p>.</span><span class=nx>random</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+    <span class=p>}</span><span class=p>,</span>
+  <span class=p>}</span><span class=p>,</span>
+<span class=p>}</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>访问其他 store 操作</p><p>要使用另一个 store ，您可以直接在操作内部使用它：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>import</span> <span class=p>{</span> <span class=nx>useAuthStore</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;./auth-store&#39;</span>
+
+<span class=kr>export</span> <span class=kr>const</span> <span class=nx>useSettingsStore</span> <span class=o>=</span> <span class=nx>defineStore</span><span class=p>(</span><span class=s1>&#39;settings&#39;</span><span class=p>,</span> <span class=p>{</span>
+  <span class=nx>state</span><span class=o>:</span> <span class=p>(</span><span class=p>)</span> <span class=o>=</span><span class=o>&gt;</span> <span class=p>(</span><span class=p>{</span>
+    <span class=c1>// ...
+</span><span class=c1></span>  <span class=p>}</span><span class=p>)</span><span class=p>,</span>
+  <span class=nx>actions</span><span class=o>:</span> <span class=p>{</span>
+    <span class=nx>async</span> <span class=nx>fetchUserPreferences</span><span class=p>(</span><span class=nx>preferences</span><span class=p>)</span> <span class=p>{</span>
+      <span class=kr>const</span> <span class=nx>auth</span> <span class=o>=</span> <span class=nx>useAuthStore</span><span class=p>(</span><span class=p>)</span>
+      <span class=k>if</span> <span class=p>(</span><span class=nx>auth</span><span class=p>.</span><span class=nx>isAuthenticated</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>preferences</span> <span class=o>=</span> <span class=nx>await</span> <span class=nx>fetchPreferences</span><span class=p>(</span><span class=p>)</span>
+      <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+        <span class=k>throw</span> <span class=k>new</span> <span class=nb>Error</span><span class=p>(</span><span class=s1>&#39;User must be authenticated&#39;</span><span class=p>)</span>
+      <span class=p>}</span>
+    <span class=p>}</span><span class=p>,</span>
+  <span class=p>}</span><span class=p>,</span>
+<span class=p>}</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>模块化</p><p>我个人感觉pinia的模块化就是一个模块创建一个文件夹~~然后再引入那个文件夹就行了。</p><p>在router.js中使用</p><p>必须写在router.beforeEach里面。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=nx>router</span><span class=p>.</span><span class=nx>beforeEach</span><span class=p>(</span><span class=p>(</span><span class=nx>to</span><span class=p>)</span> <span class=o>=</span><span class=o>&gt;</span> <span class=p>{</span>
+    <span class=kr>const</span> <span class=nx>store</span> <span class=o>=</span> <span class=nx>loginStore</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+    <span class=k>if</span> <span class=p>(</span><span class=nx>to</span><span class=p>.</span><span class=nx>path</span> <span class=o>!==</span> <span class=s2>&#34;/login&#34;</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>store</span><span class=p>.</span><span class=nx>token</span><span class=p>)</span> <span class=p>{</span>
+            <span class=k>return</span> <span class=s2>&#34;/login&#34;</span><span class=p>;</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+<span class=p>}</span><span class=p>)</span><span class=p>;</span>
+</code></pre></td></tr></table></div></div><p><strong>持久化,<code>pinia-plugin-persist</code>插件 pinia-plugin-persistedstate`插件</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm i pinia-plugin-persist --save
+<span class=o>[</span>or yarn add pinia-plugin-persist --save<span class=o>]</span>
+</code></pre></td></tr></table></div></div><p>在<code>index.ts</code>中引入持久化插件</p><p>(默认存储在localStorage)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>import</span> <span class=p>{</span> <span class=nx>createPinia</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;pinia&#39;</span>
+<span class=c1>// import piniaPluginpersist from &#39;pinia-plugin-persist&#39;
+</span><span class=c1></span><span class=kr>import</span> <span class=nx>piniaPluginPersistedstate</span> <span class=nx>from</span> <span class=s1>&#39;pinia-plugin-persistedstate&#39;</span>
+
+<span class=kr>const</span> <span class=nx>store</span> <span class=o>=</span> <span class=nx>createPinia</span><span class=p>(</span><span class=p>)</span>
+<span class=nx>store</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>piniaPluginPersistedstate</span><span class=p>)</span>
+
+<span class=kr>export</span> <span class=k>default</span> <span class=nx>store</span>
+</code></pre></td></tr></table></div></div><p>若要修改默认配置（这里修改保存在sessionStorage下）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>import</span> <span class=p>{</span> <span class=nx>createPinia</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;pinia&#39;</span>
+<span class=kr>import</span> <span class=p>{</span> <span class=nx>createPersistedState</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;pinia-plugin-persistedstate&#39;</span>
+
+<span class=kr>const</span> <span class=nx>store</span> <span class=o>=</span> <span class=nx>createPinia</span><span class=p>(</span><span class=p>)</span>
+<span class=nx>store</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>createPersistedState</span><span class=p>(</span><span class=p>{</span>
+    <span class=nx>storage</span>: <span class=kt>sessionStorage</span>
+<span class=p>}</span><span class=p>)</span><span class=p>)</span>
+
+<span class=kr>export</span> <span class=k>default</span> <span class=nx>store</span>
+</code></pre></td></tr></table></div></div><p>使用，在store中</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>export</span> <span class=kr>const</span> <span class=nx>loginStore</span> <span class=o>=</span> <span class=nx>defineStore</span><span class=p>(</span><span class=s2>&#34;main&#34;</span><span class=p>,</span> <span class=p>{</span>
+ 
+    <span class=c1>//持久化
+</span><span class=c1></span>    <span class=nx>persist</span><span class=o>:</span> <span class=p>{</span>
+        <span class=nx>enabled</span>: <span class=kt>true</span><span class=p>,</span>
+        <span class=c1>// 自定义持久化参数
+</span><span class=c1></span>        <span class=nx>strategies</span><span class=o>:</span> <span class=p>[</span>
+            <span class=p>{</span>
+                <span class=c1>// 自定义key
+</span><span class=c1></span>                <span class=nx>key</span><span class=o>:</span> <span class=s2>&#34;token&#34;</span><span class=p>,</span>
+                <span class=c1>// 自定义存储方式，默认sessionStorage
+</span><span class=c1></span>                <span class=nx>storage</span>: <span class=kt>localStorage</span><span class=p>,</span>
+                <span class=c1>// 指定要持久化的数据，默认所有 state 都会进行缓存，可以通过 paths 指定要持久化的字段，其他的则不会进行持久化。
+</span><span class=c1></span>                <span class=nx>paths</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;token&#34;</span><span class=p>]</span><span class=p>,</span>
+            <span class=p>}</span><span class=p>,</span>
+            <span class=p>{</span>
+                <span class=nx>key</span><span class=o>:</span> <span class=s2>&#34;menulist&#34;</span><span class=p>,</span>
+                <span class=nx>storage</span>: <span class=kt>localStorage</span><span class=p>,</span>
+                <span class=nx>paths</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;menulist&#34;</span><span class=p>]</span><span class=p>,</span>
+            <span class=p>}</span><span class=p>,</span>
+        <span class=p>]</span><span class=p>,</span>
+    <span class=p>}</span><span class=p>,</span>
+<span class=p>}</span><span class=p>)</span><span class=p>;</span>
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>export</span> <span class=kr>const</span> <span class=nx>loginStore</span> <span class=o>=</span> <span class=nx>defineStore</span><span class=p>(</span><span class=s2>&#34;main&#34;</span><span class=p>,</span> <span class=p>{</span>
+ 
+    <span class=c1>//持久化
+</span><span class=c1></span>    <span class=nx>persist</span><span class=o>:</span> <span class=p>{</span>
+        <span class=nx>storage</span>: <span class=kt>sessionStorage</span>
+	<span class=p>}</span><span class=p>,</span>
+    <span class=c1>// or
+</span><span class=c1></span>    <span class=c1>// persist: true
+</span><span class=c1></span>    <span class=c1>// or
+</span><span class=c1></span>    <span class=c1>// persist: [
+</span><span class=c1></span>    <span class=c1>//    {
+</span><span class=c1></span>    <span class=c1>//     storage: sessionStorage
+</span><span class=c1></span>	<span class=c1>// 	} 
+</span><span class=c1></span>    <span class=c1>// ]
+</span><span class=c1></span><span class=p>)</span><span class=p>;</span>
+</code></pre></td></tr></table></div></div><p>对保存的数据进行加密，SecureLS默认保存在localStorage</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>import</span> <span class=p>{</span> <span class=nx>createPinia</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;pinia&#39;</span>
+<span class=kr>import</span> <span class=p>{</span> <span class=nx>type</span> <span class=nx>StorageLike</span><span class=p>,</span> <span class=nx>createPersistedState</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;pinia-plugin-persistedstate&#39;</span>
+<span class=kr>import</span> <span class=nx>SecureLS</span> <span class=nx>from</span> <span class=s1>&#39;secure-ls&#39;</span><span class=p>;</span>
+
+<span class=kr>const</span> <span class=nx>ls</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SecureLS</span><span class=p>(</span><span class=p>{</span><span class=nx>encodingType</span><span class=o>:</span> <span class=s1>&#39;rc4&#39;</span><span class=p>,</span> <span class=nx>isCompression</span>: <span class=kt>false</span><span class=p>,</span> <span class=nx>encryptionSecret</span><span class=o>:</span> <span class=s1>&#39;s3cr3tPa$$w0rd@123&#39;</span> <span class=p>}</span><span class=p>)</span>
+<span class=kr>const</span> <span class=nx>customStorage</span>: <span class=kt>StorageLike</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=nx>setItem</span><span class=p>(</span><span class=nx>key</span>: <span class=kt>string</span><span class=p>,</span> <span class=nx>value</span>: <span class=kt>string</span><span class=p>)</span><span class=p>{</span>
+        <span class=nx>ls</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=nx>key</span><span class=p>,</span> <span class=nx>value</span><span class=p>)</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=nx>getItem</span><span class=p>(</span><span class=nx>key</span>: <span class=kt>string</span><span class=p>)</span><span class=o>:</span> <span class=kt>string</span> <span class=o>|</span> <span class=kc>null</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nx>ls</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=nx>key</span><span class=p>)</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+<span class=kr>const</span> <span class=nx>store</span> <span class=o>=</span> <span class=nx>createPinia</span><span class=p>(</span><span class=p>)</span>
+<span class=nx>store</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>createPersistedState</span><span class=p>(</span><span class=p>{</span>
+    <span class=nx>storage</span>: <span class=kt>customStorage</span>
+<span class=p>}</span><span class=p>)</span><span class=p>)</span>
+
+<span class=kr>export</span> <span class=k>default</span> <span class=nx>store</span>
+</code></pre></td></tr></table></div></div><p>修改为保存在sessionStorage</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-typescript data-lang=typescript><span class=kr>import</span> <span class=p>{</span> <span class=nx>createPinia</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;pinia&#39;</span>
+<span class=kr>import</span> <span class=p>{</span> <span class=nx>type</span> <span class=nx>StorageLike</span><span class=p>,</span> <span class=nx>createPersistedState</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;pinia-plugin-persistedstate&#39;</span>
+<span class=kr>import</span> <span class=nx>SecureLS</span> <span class=nx>from</span> <span class=s1>&#39;secure-ls&#39;</span><span class=p>;</span>
+<span class=kr>class</span> <span class=nx>CustomSecureLs</span> <span class=kr>extends</span> <span class=nx>SecureLS</span> <span class=p>{</span>
+    <span class=nx>ls</span>: <span class=kt>Storage</span><span class=p>;</span>
+    <span class=kr>constructor</span><span class=p>(</span><span class=nx>config</span><span class=o>?</span><span class=o>:</span> <span class=p>{</span> <span class=nx>isCompression?</span>: <span class=kt>boolean</span><span class=p>,</span> <span class=nx>encodingType?</span>: <span class=kt>string</span><span class=p>,</span> <span class=nx>encryptionSecret?</span>: <span class=kt>string</span> <span class=p>,</span> <span class=nx>encryptionNamespace?</span>: <span class=kt>string</span> <span class=p>}</span><span class=p>)</span><span class=p>{</span>
+        <span class=kr>super</span><span class=p>(</span><span class=nx>config</span><span class=p>)</span>
+        <span class=k>this</span><span class=p>.</span><span class=nx>ls</span> <span class=o>=</span> <span class=nx>sessionStorage</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+<span class=kr>const</span> <span class=nx>ls</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>CustomSecureLs</span><span class=p>(</span><span class=p>{</span><span class=nx>encodingType</span><span class=o>:</span> <span class=s1>&#39;rc4&#39;</span><span class=p>,</span> <span class=nx>isCompression</span>: <span class=kt>false</span><span class=p>,</span> <span class=nx>encryptionSecret</span><span class=o>:</span> <span class=s1>&#39;s3cr3tPa$$w0rd@123&#39;</span> <span class=p>}</span><span class=p>)</span>
+<span class=kr>const</span> <span class=nx>customStorage</span>: <span class=kt>StorageLike</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=nx>setItem</span><span class=p>(</span><span class=nx>key</span>: <span class=kt>string</span><span class=p>,</span> <span class=nx>value</span>: <span class=kt>string</span><span class=p>)</span><span class=p>{</span>
+        <span class=nx>ls</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=nx>key</span><span class=p>,</span> <span class=nx>value</span><span class=p>)</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=nx>getItem</span><span class=p>(</span><span class=nx>key</span>: <span class=kt>string</span><span class=p>)</span><span class=o>:</span> <span class=kt>string</span> <span class=o>|</span> <span class=kc>null</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nx>ls</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=nx>key</span><span class=p>)</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+<span class=kr>const</span> <span class=nx>store</span> <span class=o>=</span> <span class=nx>createPinia</span><span class=p>(</span><span class=p>)</span>
+<span class=nx>store</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>createPersistedState</span><span class=p>(</span><span class=p>{</span>
+    <span class=nx>storage</span>: <span class=kt>customStorage</span>
+<span class=p>}</span><span class=p>)</span><span class=p>)</span>
+
+<span class=kr>export</span> <span class=k>default</span> <span class=nx>store</span>
+</code></pre></td></tr></table></div></div><h2 id=6element-plus>6.element-plus</h2><p>element-ui的vue3版本，首先安装它：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm install element-plus --save
+<span class=o>[</span>yarn add element-plus --save<span class=o>]</span>
+</code></pre></td></tr></table></div></div><p>在main.ts中作出如下配置：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>// main.ts
+import <span class=o>{</span> createApp <span class=o>}</span> from <span class=s1>&#39;vue&#39;</span>
+import App from <span class=s1>&#39;./App.vue&#39;</span>
+import router from <span class=s1>&#39;./router&#39;</span>
+import store from <span class=s1>&#39;./store&#39;</span>
+import ElementPlus from <span class=s1>&#39;element-plus&#39;</span> // 引入element-plus
+import <span class=s1>&#39;element-plus/dist/index.css&#39;</span> // 引入element-plus的样式
+
+const <span class=nv>app</span> <span class=o>=</span> createApp<span class=o>(</span>App<span class=o>)</span>
+app.use<span class=o>(</span>router<span class=o>)</span>
+app.use<span class=o>(</span>store<span class=o>)</span>
+app.use<span class=o>(</span>ElementPlus<span class=o>)</span> // use element-plus 
+app.mount<span class=o>(</span><span class=s1>&#39;#app&#39;</span><span class=o>)</span>
+</code></pre></td></tr></table></div></div><p>然后就可以使用element-plus的组件了，比较多，使用的时候直接参照官方文档就行。</p><h2 id=7封装axios>7.封装axios</h2><p>安装axios：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm i axios
+<span class=o>[</span>or yarn add axios<span class=o>]</span>
+</code></pre></td></tr></table></div></div><p>在src文件夹下新建<code>utils</code>文件夹，然后在其下创建<code>request.ts</code>文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>import axios from <span class=s1>&#39;axios&#39;</span>
+import <span class=o>{</span> ElMessage <span class=o>}</span> from <span class=s1>&#39;element-plus&#39;</span>
+
+const <span class=nv>instance</span> <span class=o>=</span> axios.create<span class=o>(</span><span class=o>{</span>
+  baseURL: <span class=s1>&#39;&#39;</span>,
+  timeout: <span class=m>5000</span>
+<span class=o>}</span><span class=o>)</span>
+
+instance.interceptors.request.use<span class=o>(</span>
+  <span class=nv>config</span> <span class=o>=</span>&gt; <span class=o>{</span>
+    <span class=k>return</span> config
+  <span class=o>}</span>,
+  <span class=nv>error</span> <span class=o>=</span>&gt; <span class=o>{</span>
+    console.log<span class=o>(</span>error<span class=o>)</span>
+    <span class=k>return</span> Promise.reject<span class=o>(</span>error<span class=o>)</span>
+  <span class=o>}</span>
+<span class=o>)</span>
+
+instance.interceptors.response.use<span class=o>(</span>
+  <span class=nv>response</span> <span class=o>=</span>&gt; <span class=o>{</span>
+    const <span class=nv>res</span> <span class=o>=</span> response.data
+    <span class=k>if</span> <span class=o>(</span>res.status !<span class=o>=</span><span class=o>=</span> 200<span class=o>)</span> <span class=o>{</span>
+      ElMessage<span class=o>(</span><span class=o>{</span>
+        message: res.message <span class=o>||</span> <span class=s1>&#39;Error&#39;</span>,
+        type: <span class=s1>&#39;error&#39;</span>,
+        duration: <span class=m>5</span> * <span class=m>1000</span>
+      <span class=o>}</span><span class=o>)</span>
+      <span class=k>return</span> Promise.reject<span class=o>(</span>new Error<span class=o>(</span>res.message <span class=o>||</span> <span class=s1>&#39;Error&#39;</span><span class=o>)</span><span class=o>)</span>
+    <span class=o>}</span> <span class=k>else</span> <span class=o>{</span>
+      <span class=k>return</span> res.data
+    <span class=o>}</span>
+  <span class=o>}</span>,
+  <span class=nv>error</span> <span class=o>=</span>&gt; <span class=o>{</span>
+    console.log<span class=o>(</span><span class=s1>&#39;err&#39;</span> + error<span class=o>)</span> // <span class=k>for</span> debug
+    ElMessage<span class=o>(</span><span class=o>{</span>
+      message: error.message,
+      type: <span class=s1>&#39;error&#39;</span>,
+      duration: <span class=m>5</span> * <span class=m>1000</span>
+    <span class=o>}</span><span class=o>)</span>
+    <span class=k>return</span> Promise.reject<span class=o>(</span>error<span class=o>)</span>
+  <span class=o>}</span>
+<span class=o>)</span>
+
+<span class=nb>export</span> default instance
+</code></pre></td></tr></table></div></div><p>src下新建api文件夹，创建一个user.ts文件，并创建一个登录的请求：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>import request from <span class=s1>&#39;../utils/request&#39;</span>
+
+<span class=nb>export</span> <span class=k>function</span> login<span class=o>(</span>data: any<span class=o>)</span> <span class=o>{</span>
+  <span class=k>return</span> request<span class=o>(</span><span class=o>{</span>
+    url: <span class=s1>&#39;/user/login&#39;</span>,
+    method: <span class=s1>&#39;post&#39;</span>,
+    data
+  <span class=o>}</span><span class=o>)</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>然后在HelloWorld组件中onMounted中调用login接口：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>import <span class=o>{</span> onMounted <span class=o>}</span> from <span class=s1>&#39;vue&#39;</span>
+onMounted<span class=o>(</span><span class=o>(</span><span class=o>)</span> <span class=o>=</span>&gt; <span class=o>{</span>
+  login<span class=o>(</span><span class=o>{</span> account: <span class=s1>&#39;admin&#39;</span>, password: <span class=s1>&#39;123456&#39;</span> <span class=o>}</span><span class=o>)</span>.then<span class=o>(</span><span class=nv>res</span> <span class=o>=</span>&gt; <span class=o>{</span>
+    console.log<span class=o>(</span>res<span class=o>)</span>
+  <span class=o>}</span><span class=o>)</span>
+<span class=o>}</span><span class=o>)</span>
+</code></pre></td></tr></table></div></div><p>当然，现在还调不通，所以我们先配置下mock。</p><h2 id=8mockjs>8.mockjs</h2><p>安装mockjs：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm i mockjs -D
+<span class=o>[</span>yarn add mockjs -D<span class=o>]</span>
+</code></pre></td></tr></table></div></div><p>在根目录新建mock文件夹，并新建index.ts文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>// index.ts
+import Mock from <span class=s1>&#39;mockjs&#39;</span>
+
+// 设置拦截ajax请求的相应时间
+Mock.setup<span class=o>(</span><span class=o>{</span>
+  timeout: <span class=s1>&#39;200-600&#39;</span>
+<span class=o>}</span><span class=o>)</span>
+
+Mock.mock<span class=o>(</span><span class=s1>&#39;/user/login&#39;</span>, <span class=s1>&#39;post&#39;</span>, <span class=o>(</span>params: any<span class=o>)</span> <span class=o>=</span>&gt; <span class=o>{</span>
+  <span class=k>return</span> <span class=o>{</span>
+    data: <span class=o>{</span> token: <span class=s1>&#39;123&#39;</span> <span class=o>}</span>,
+    status: 200,
+    message: <span class=s1>&#39;success&#39;</span>
+  <span class=o>}</span>
+<span class=o>}</span><span class=o>)</span>
+
+<span class=nb>export</span> default <span class=o>{</span><span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>简单设置一个login接口，让我们能够通过axios调通，然后在main.ts中引入mock：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>import <span class=s1>&#39;../mock&#39;</span>
+</code></pre></td></tr></table></div></div><p>启动项目：</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106114420159.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106114420159.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106114420159.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106114420159.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20221106114420159.png title=image-20221106114420159></p><p>有返回值，搞定</p><h2 id=9css预处理>9.css预处理</h2><p>vite是支持sass（scss）的，但是还是需要我们先安装一下，不然会报错</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm install sass --save-dev
+<span class=o>[</span>or yarn add sass --save-dev<span class=o>]</span>
+</code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2022-11-06</span></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/vue3/>Vue3</a>,&nbsp;<a href=/tags/vite/>Vite</a>,&nbsp;<a href=/tags/ts/>ts</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/docker/docker%E7%AC%94%E8%AE%B0/ class=prev rel=prev title=Docker笔记><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>Docker笔记</a>
+<a href=/posts/vue/vue3%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/ class=next rel=next title=Vue3环境安装>Vue3环境安装<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>QiMington</a></span></div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><span class=license><img src=/beian.png style=vertical-align:middle;height:16.5px><a href="https://beian.mps.gov.cn/#/query/webSearch?code=42088102000171" rel=noreferrer target=_blank>鄂公网安备42088102000171</a></span><span class=icp-splitter>&nbsp;&nbsp;|&nbsp;</span><br class=icp-br><span class=icp><a href=https://beian.miit.gov.cn target=_blank>鄂ICP备2022006388号</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

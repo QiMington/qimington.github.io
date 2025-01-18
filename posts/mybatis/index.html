@@ -1,0 +1,166 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>MyBatis使用技巧 - QiMington's</title><meta name=keywords content="贺兴宇,QiMington,启明顿,个人博客,blog.qimington.com"><meta name=description content="我在这里分享一些有趣的东西，寻找志同道合的朋友。I am here to share some interesting things and find like-minded friends."><meta property="og:title" content="MyBatis使用技巧"><meta property="og:description" content="新增、更新数据不刷新缓存 缓存在新增、更新数据时会自动失效，对于部分影响不大的操作可以设置不刷新缓存，方法是在语句xml中设置flushCache=false。
+1  <update id=&#34;demo&#34; flushCache=&#34;flase&#34;></update>   模糊查询 MySQL模糊查询一把条件是使用like条件，经常使用传入的变量作为like条件。在MyBatis里面，like使用变量需要用到${}或者concat。建议使用concat，#{}可以防止SQL注入。
+1 2  like '%${value}%' like concat('%',#{value},'%')   使用缓存 使用缓存能够极大提升应用的性能。二级缓存的开启方式是
+1  <cache flushInterval=&#34;60000&#34;></cache>   自动创建表 不建议在MyBatis里面建表，原则上数据表要由数据库管理员创建。但是对于一些小应用，可能开发者集多个角色于一身，自动创建表反而利大于弊。如下的语句在<select>标签内使用了CREATE TABLE IF NOT EXISTS语法，可以在无表时自动创建表，有表时会跳过执行。
+1 2 3 4 5 6  <select id=&#34;createTable&#34;> CREATE TABLE IF NOT EXISTS `demo` ( `id` int(11) NOT NULL AUTO_INCREMENT, `path` varchar(128) NOT NULL COMMENT '路径', ) ENGINE=MyISM DEFAULT CHARSET=utf8; </select>   设置SQL超时时间 通过timeout属性可以设置超时时间，也就是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数"><meta property="og:type" content="article"><meta property="og:url" content="/posts/mybatis/"><meta property="article:published_time" content="2022-07-10T12:09:40+08:00"><meta property="article:modified_time" content="2022-07-10T12:09:40+08:00"><meta property="og:site_name" content="QiMington's"><meta name=twitter:card content="summary"><meta name=twitter:title content="MyBatis使用技巧"><meta name=twitter:description content="新增、更新数据不刷新缓存 缓存在新增、更新数据时会自动失效，对于部分影响不大的操作可以设置不刷新缓存，方法是在语句xml中设置flushCache=false。
+1  <update id=&#34;demo&#34; flushCache=&#34;flase&#34;></update>   模糊查询 MySQL模糊查询一把条件是使用like条件，经常使用传入的变量作为like条件。在MyBatis里面，like使用变量需要用到${}或者concat。建议使用concat，#{}可以防止SQL注入。
+1 2  like '%${value}%' like concat('%',#{value},'%')   使用缓存 使用缓存能够极大提升应用的性能。二级缓存的开启方式是
+1  <cache flushInterval=&#34;60000&#34;></cache>   自动创建表 不建议在MyBatis里面建表，原则上数据表要由数据库管理员创建。但是对于一些小应用，可能开发者集多个角色于一身，自动创建表反而利大于弊。如下的语句在<select>标签内使用了CREATE TABLE IF NOT EXISTS语法，可以在无表时自动创建表，有表时会跳过执行。
+1 2 3 4 5 6  <select id=&#34;createTable&#34;> CREATE TABLE IF NOT EXISTS `demo` ( `id` int(11) NOT NULL AUTO_INCREMENT, `path` varchar(128) NOT NULL COMMENT '路径', ) ENGINE=MyISM DEFAULT CHARSET=utf8; </select>   设置SQL超时时间 通过timeout属性可以设置超时时间，也就是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数"><meta name=application-name content="QiMington's"><meta name=apple-mobile-web-app-title content="QiMington's"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=/avatar.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=/posts/mybatis/><link rel=prev href=/posts/redis/%E6%B7%B1%E5%85%A5/><link rel=next href=/posts/mysql/mysql%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css><meta name=google-site-verification content="gKS_lOzqrL6dS6WciO5_y1FmkXkuK6581tNNUSFvYq4"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"MyBatis使用技巧","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"\/posts\/mybatis\/"},"genre":"posts","keywords":"MyBatis, 使用技巧","wordcount":309,"url":"\/posts\/mybatis\/","datePublished":"2022-07-10T12:09:40+08:00","dateModified":"2022-07-10T12:09:40+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"QiMington"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="QiMington's">QiMington</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="QiMington's">QiMington</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/>首页</a><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MyBatis使用技巧</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>QiMington</a>
+</span>&nbsp;<span class=post-category>收录于 <a href=/categories/mybatis/><i class="far fa-folder fa-fw" aria-hidden=true></i>MyBatis</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2022-07-10>2022-07-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 309 字&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 2 分钟&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#新增更新数据不刷新缓存>新增、更新数据不刷新缓存</a></li><li><a href=#模糊查询>模糊查询</a></li><li><a href=#使用缓存>使用缓存</a></li><li><a href=#自动创建表>自动创建表</a></li><li><a href=#设置sql超时时间>设置SQL超时时间</a></li><li><a href=#获取生成的自增长id>获取生成的自增长id</a></li><li><a href=#匹配多个值>匹配多个值</a></li><li><a href=#只更新部分字段>只更新部分字段</a></li><li><a href=#动态查询条件>动态查询条件</a></li><li><a href=#批量插入数据>批量插入数据</a></li><li><a href=#条件语句>条件语句</a></li><li><a href=#复用sql片段>复用SQL片段</a></li></ul></nav></div></div><div class=content id=content><h2 id=新增更新数据不刷新缓存>新增、更新数据不刷新缓存</h2><p>缓存在新增、更新数据时会自动失效，对于部分影响不大的操作可以设置不刷新缓存，方法是在语句xml中设置flushCache=false。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-xml data-lang=xml><span class=nt>&lt;update</span> <span class=na>id=</span><span class=s>&#34;demo&#34;</span> <span class=na>flushCache=</span><span class=s>&#34;flase&#34;</span><span class=nt>&gt;</span><span class=nt>&lt;/update&gt;</span>
+</code></pre></td></tr></table></div></div><h2 id=模糊查询>模糊查询</h2><p>MySQL模糊查询一把条件是使用like条件，经常使用传入的变量作为like条件。在MyBatis里面，like使用变量需要用到${}或者concat。建议使用concat，#{}可以防止SQL注入。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-mysql data-lang=mysql><span class=k>like</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>%${value}%</span><span class=s1>&#39;</span>
+<span class=k>like</span> <span class=nf>concat</span><span class=p>(</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>%</span><span class=s1>&#39;</span><span class=p>,</span><span class=c1>#{value},&#39;%&#39;)
+</span></code></pre></td></tr></table></div></div><h2 id=使用缓存>使用缓存</h2><p>使用缓存能够极大提升应用的性能。二级缓存的开启方式是</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-xml data-lang=xml><span class=nt>&lt;cache</span> <span class=na>flushInterval=</span><span class=s>&#34;60000&#34;</span><span class=nt>&gt;</span><span class=nt>&lt;/cache&gt;</span>
+</code></pre></td></tr></table></div></div><h2 id=自动创建表>自动创建表</h2><p>不建议在MyBatis里面建表，原则上数据表要由数据库管理员创建。但是对于一些小应用，可能开发者集多个角色于一身，自动创建表反而利大于弊。如下的语句在&lt;select>标签内使用了CREATE TABLE IF NOT EXISTS语法，可以在无表时自动创建表，有表时会跳过执行。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-xml data-lang=xml><span class=nt>&lt;select</span> <span class=na>id=</span><span class=s>&#34;createTable&#34;</span><span class=nt>&gt;</span>
+	CREATE TABLE IF NOT EXISTS `demo` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+	`path` varchar(128) NOT NULL COMMENT &#39;路径&#39;,
+    ) ENGINE=MyISM DEFAULT CHARSET=utf8;
+<span class=nt>&lt;/select&gt;</span>
+</code></pre></td></tr></table></div></div><h2 id=设置sql超时时间>设置SQL超时时间</h2><p>通过timeout属性可以设置超时时间，也就是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-xml data-lang=xml><span class=nt>&lt;update</span> <span class=na>id=</span><span class=s>&#34;demo&#34;</span> <span class=na>timeout=</span><span class=s>&#34;100&#34;</span><span class=nt>&gt;</span><span class=nt>&lt;/update&gt;</span>
+</code></pre></td></tr></table></div></div><h2 id=获取生成的自增长id>获取生成的自增长id</h2><p>使用自增id有很多好处，可以通过配置selectKey实现insert执行后返回生成的自增id，以用于后续流程</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-xml data-lang=xml><span class=nt>&lt;insert</span> <span class=na>id=</span><span class=s>&#34;insert&#34;</span> <span class=na>parameterType=</span><span class=s>&#34;demo&#34;</span><span class=nt>&gt;</span>
+	<span class=nt>&lt;selectKey</span> <span class=na>keyProperty=</span><span class=s>&#34;id&#34;</span> <span class=err>o</span><span class=err>r</span><span class=err>d</span><span class=err>e</span><span class=err>r</span><span class=err>&#34;</span><span class=err>A</span><span class=err>F</span><span class=err>T</span><span class=err>E</span><span class=err>R</span><span class=err>&#34;</span> <span class=na>resultType=</span><span class=s>&#34;Java.lang.Long&#34;</span><span class=nt>&gt;</span>
+    	SELECT LAST_INSERT_ID()
+    <span class=nt>&lt;/selectKey&gt;</span>
+    insert into `demo`(demo) values(#{demo})
+<span class=nt>&lt;/insert&gt;</span>
+</code></pre></td></tr></table></div></div><h2 id=匹配多个值>匹配多个值</h2><p>使用forEach构建查询条件集合，where语句使用in即可实现匹配做个值。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-xml data-lang=xml><span class=nt>&lt;select</span> <span class=na>id=</span><span class=s>&#34;querybyId&#34;</span> <span class=na>resultType=</span><span class=s>&#34;BaseResultMap&#34;</span><span class=nt>&gt;</span>
+	select * from entity
+    where id in
+    <span class=nt>&lt;forEach</span> <span class=na>collection=</span><span class=s>&#34;userids&#34;</span> <span class=na>item=</span><span class=s>&#34;userid&#34;</span> <span class=na>index=</span><span class=s>&#34;index&#34;</span> <span class=na>open=</span><span class=s>&#34;(&#34;</span> <span class=na>seperator=</span><span class=s>&#34;,&#34;</span> <span class=na>close=</span><span class=s>&#34;)&#34;</span><span class=nt>&gt;</span>
+    	#{userid}
+    <span class=nt>&lt;/forEach&gt;</span>
+<span class=nt>&lt;/select&gt;</span>
+</code></pre></td></tr></table></div></div><h2 id=只更新部分字段>只更新部分字段</h2><p>使用&lt;if>&lt;set>标签配合，可以实现只更新部分数据。一般是传入null不更新，非null则更新。</p><p>&lt;if>标签支持test配置一个表达式，表达式返回true时&lt;if>内部的SQL片段会生效，否则不会生效。&lt;set>标签能够自动生成set片段，并处理去除首尾多余的字符。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-xml data-lang=xml><span class=nt>&lt;update</span> <span class=na>id=</span><span class=s>&#34;updateById&#34;</span> <span class=na>parameterType=</span><span class=s>&#34;UserDO&#34;</span><span class=nt>&gt;</span>
+	update `user`
+    <span class=nt>&lt;set</span><span class=nt>&gt;</span>
+    	<span class=nt>&lt;if</span> <span class=na>test=</span><span class=s>&#34;nick != null&#34;</span><span class=nt>&gt;</span>
+        	nick = #{nick},
+        <span class=nt>&lt;/if&gt;</span>
+        <span class=nt>&lt;if</span> <span class=na>test=</span><span class=s>&#34;avatar != null&#34;</span><span class=nt>&gt;</span>
+        	avatar = #{avatar},
+        <span class=nt>&lt;/if&gt;</span>
+    <span class=nt>&lt;/set&gt;</span>
+    where userId = #{userId}
+<span class=nt>&lt;/update&gt;</span>
+</code></pre></td></tr></table></div></div><h2 id=动态查询条件>动态查询条件</h2><p>使用&lt;if>&lt;where>标签配合，可以实现动态查询条件。&lt;if>标签能够实现条件判断。&lt;where>标签能够自动组装where片段，去除首尾的非法字符。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-xml data-lang=xml><span class=nt>&lt;select</span> <span class=na>id=</span><span class=s>&#34;select&#34;</span> <span class=na>resultType=</span><span class=s>&#34;resultMap&#34;</span><span class=nt>&gt;</span>
+	SELECT * FROM demo
+    <span class=nt>&lt;where</span><span class=nt>&gt;</span>
+    	<span class=nt>&lt;if</span> <span class=na>test=</span><span class=s>&#34;userId != null&#34;</span><span class=nt>&gt;</span>
+        	userId = #{userId}
+        <span class=nt>&lt;/if&gt;</span>
+        <span class=nt>&lt;if</span> <span class=na>test=</span><span class=s>&#34;nick != null&#34;</span><span class=nt>&gt;</span>
+        	and nick= #{nick}
+        <span class=nt>&lt;/if&gt;</span>
+    <span class=nt>&lt;/where&gt;</span>
+<span class=nt>&lt;/select&gt;</span>
+</code></pre></td></tr></table></div></div><h2 id=批量插入数据>批量插入数据</h2><p>批量插入数据能够极大提升性能，曾经测试过多条数据插入时间从分钟级降到秒级完成。批量插入主要用到forEach标签，把批量数据转换成values语句。</p><p>forEach标签的属性主要有item，index，collection，open，separator，close。</p><p>item：集合中元素迭代时的别名；</p><p>index：集合中元素迭代时的索引；</p><p>open：常用于where语句中，表示以什么开始，比如以&rsquo;(&lsquo;开始；</p><p>close：常用于where语句中，表示以什么结束；</p><p>collection：集合值；</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-xml data-lang=xml><span class=nt>&lt;insert</span> <span class=na>id=</span><span class=s>&#34;batchInsert&#34;</span> <span class=na>parameterType=</span><span class=s>&#34;java.util.List&#34;</span><span class=nt>&gt;</span>
+	insert into `demo`(userId, `url`)
+    values
+    <span class=nt>&lt;foreach</span> <span class=na>collection=</span><span class=s>&#34;list&#34;</span> <span class=na>item=</span><span class=s>&#34;item&#34;</span> <span class=na>separator=</span><span class=s>&#34;,&#34;</span><span class=nt>&gt;</span>
+    	(#{item.userId}, #{item.url})
+    <span class=nt>&lt;/foreach&gt;</span>
+<span class=nt>&lt;/insert&gt;</span>
+</code></pre></td></tr></table></div></div><h2 id=条件语句>条件语句</h2><p>java可以很方便地使用if或switch实现分支功能。MyBatis的choose标签可以实现条件分支。如下的配置中，传入id时使用id，不传则使用其它条件。</p><p>choose标签是按顺序判断其内部when标签中的test条件是否成立，如果有一个成立，则choose结束。当choose中所有when的条件都不满足，则执行otherwise中的sql。类似Java的switch语句，choose为switch，when为case，otherwise则为default。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-xml data-lang=xml><span class=nt>&lt;update</span> <span class=na>id=</span><span class=s>&#34;update&#34;</span> <span class=na>parameterType=</span><span class=s>&#34;Config&#34;</span><span class=nt>&gt;</span>
+	update `config` set `content` = #{content}
+    <span class=nt>&lt;where</span><span class=nt>&gt;</span>
+    	<span class=nt>&lt;choose</span><span class=nt>&gt;</span>
+        	<span class=nt>&lt;when</span> <span class=na>test=</span><span class=s>&#34;id != null&#34;</span><span class=nt>&gt;</span>
+            	id = #{id}
+            <span class=nt>&lt;/when&gt;</span>
+            <span class=nt>&lt;otherwise</span><span class=nt>&gt;</span>
+            	appName = #{appName} and t = #{t} and x = #{x}
+            <span class=nt>&lt;/otherwise&gt;</span>
+        <span class=nt>&lt;/choose&gt;</span>
+    <span class=nt>&lt;/where&gt;</span>
+<span class=nt>&lt;/update&gt;</span>
+</code></pre></td></tr></table></div></div><h2 id=复用sql片段>复用SQL片段</h2><p>用sql标签可以定义SQL片段，用于SQL语句复用。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-xml data-lang=xml><span class=nt>&lt;sql</span> <span class=na>id=</span><span class=s>&#34;Base_Column_List&#34;</span><span class=nt>&gt;</span>
+	userid, email
+<span class=nt>&lt;/sql&gt;</span>
+<span class=nt>&lt;select</span> <span class=na>id=</span><span class=s>&#34;selectById&#34;</span> <span class=na>parameter=</span><span class=s>&#34;java.lang.Long&#34;</span> <span class=na>resultMap=</span><span class=s>&#34;ResultMap&#34;</span><span class=nt>&gt;</span>
+	select
+    <span class=nt>&lt;include</span> <span class=na>refid=</span><span class=s>&#34;Base_Column_List&#34;</span> <span class=nt>/&gt;</span>
+    from `user`
+    where userId = #{userId}
+<span class=nt>&lt;/select&gt;</span>
+</code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2022-07-10</span></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/mybatis/>MyBatis</a>,&nbsp;<a href=/tags/%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/>使用技巧</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/redis/%E6%B7%B1%E5%85%A5/ class=prev rel=prev title=深入><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>深入</a>
+<a href=/posts/mysql/mysql%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/ class=next rel=next title=MySQL使用技巧>MySQL使用技巧<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>QiMington</a></span></div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><span class=license><img src=/beian.png style=vertical-align:middle;height:16.5px><a href="https://beian.mps.gov.cn/#/query/webSearch?code=42088102000171" rel=noreferrer target=_blank>鄂公网安备42088102000171</a></span><span class=icp-splitter>&nbsp;&nbsp;|&nbsp;</span><br class=icp-br><span class=icp><a href=https://beian.miit.gov.cn target=_blank>鄂ICP备2022006388号</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
