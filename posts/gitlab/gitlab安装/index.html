@@ -1,0 +1,124 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>GitLab安装 - QiMington's</title><meta name=keywords content="贺兴宇,QiMington,启明顿,个人博客,blog.qimington.com"><meta name=description content="我在这里分享一些有趣的东西，寻找志同道合的朋友。I am here to share some interesting things and find like-minded friends."><meta property="og:title" content="GitLab安装"><meta property="og:description" content="以Docker容器的形式安装（不建议） 1. 拉取镜像 1  docker pull gitlab/gitlab-ce:latest   2. 启动容器 1 2 3 4 5 6 7 8 9 10 11 12 13  # 启动容器 docker run \  -itd \  -p 9980:80 \  -p 9922:22 \  -v /home/gitlab/etc:/etc/gitlab \  -v /home/gitlab/log:/var/log/gitlab \  -v /home/gitlab/opt:/var/opt/gitlab \  --restart always \  --privileged=true \  --name gitlab \  gitlab/gitlab-ce    接下来的配置请在容器内进行修改，不要在挂载到宿主机的文件上进行修改。否则可能出现配置更新不到容器内，或者是不能即时更新到容器内，导致gitlab启动成功，但是无法访问"><meta property="og:type" content="article"><meta property="og:url" content="/posts/gitlab/gitlab%E5%AE%89%E8%A3%85/"><meta property="article:published_time" content="2024-02-03T16:26:00+08:00"><meta property="article:modified_time" content="2024-02-03T16:26:00+08:00"><meta property="og:site_name" content="QiMington's"><meta name=twitter:card content="summary"><meta name=twitter:title content="GitLab安装"><meta name=twitter:description content="以Docker容器的形式安装（不建议） 1. 拉取镜像 1  docker pull gitlab/gitlab-ce:latest   2. 启动容器 1 2 3 4 5 6 7 8 9 10 11 12 13  # 启动容器 docker run \  -itd \  -p 9980:80 \  -p 9922:22 \  -v /home/gitlab/etc:/etc/gitlab \  -v /home/gitlab/log:/var/log/gitlab \  -v /home/gitlab/opt:/var/opt/gitlab \  --restart always \  --privileged=true \  --name gitlab \  gitlab/gitlab-ce    接下来的配置请在容器内进行修改，不要在挂载到宿主机的文件上进行修改。否则可能出现配置更新不到容器内，或者是不能即时更新到容器内，导致gitlab启动成功，但是无法访问"><meta name=application-name content="QiMington's"><meta name=apple-mobile-web-app-title content="QiMington's"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=/avatar.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=/posts/gitlab/gitlab%E5%AE%89%E8%A3%85/><link rel=prev href=/posts/python/centos%E4%B8%AD%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85python/><link rel=next href=/posts/docker/clash-python%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css><meta name=google-site-verification content="gKS_lOzqrL6dS6WciO5_y1FmkXkuK6581tNNUSFvYq4"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"GitLab安装","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"\/posts\/gitlab\/gitlab%E5%AE%89%E8%A3%85\/"},"genre":"posts","keywords":"GitLab, 安装","wordcount":253,"url":"\/posts\/gitlab\/gitlab%E5%AE%89%E8%A3%85\/","datePublished":"2024-02-03T16:26:00+08:00","dateModified":"2024-02-03T16:26:00+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"QiMington"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="QiMington's">QiMington</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="QiMington's">QiMington</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/>首页</a><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">GitLab安装</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>QiMington</a>
+</span>&nbsp;<span class=post-category>收录于 <a href=/categories/gitlab/><i class="far fa-folder fa-fw" aria-hidden=true></i>GitLab</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2024-02-03>2024-02-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 253 字&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 2 分钟&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#以docker容器的形式安装不建议>以Docker容器的形式安装（不建议）</a><ul><li><a href=#1-拉取镜像>1. 拉取镜像</a></li><li><a href=#2-启动容器>2. 启动容器</a></li><li><a href=#3-修改配置>3. 修改配置</a></li><li><a href=#4-重启gitlab不是重启容器>4. 重启gitlab[不是重启容器]</a></li><li><a href=#5-浏览器访问>5. 浏览器访问</a></li><li><a href=#6-修改root密码>6. 修改root密码</a></li></ul></li><li><a href=#在原生系统上进行安装以ubuntu为例-更多方式请访问官方网站httpsgitlabcninstall>在原生系统上进行安装(以ubuntu为例, 更多方式请访问官方网站https://gitlab.cn/install/)</a><ul><li><a href=#1-安装和配置必须的依赖项>1. 安装和配置必须的依赖项</a></li><li><a href=#2-下载安装极狐gitlab>2. 下载/安装极狐GitLab</a></li><li><a href=#3-访问极狐gitlab-实例并登录>3. 访问极狐GitLab 实例并登录</a></li><li><a href=#4-后续配置>4. 后续配置</a></li></ul></li></ul></nav></div></div><div class=content id=content><h2 id=以docker容器的形式安装不建议>以Docker容器的形式安装（不建议）</h2><h3 id=1-拉取镜像>1. 拉取镜像</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker pull gitlab/gitlab-ce:latest
+</code></pre></td></tr></table></div></div><h3 id=2-启动容器>2. 启动容器</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>
+<span class=c1># 启动容器</span>
+docker run <span class=se>\
+</span><span class=se></span> -itd  <span class=se>\
+</span><span class=se></span> -p 9980:80 <span class=se>\
+</span><span class=se></span> -p 9922:22 <span class=se>\
+</span><span class=se></span> -v /home/gitlab/etc:/etc/gitlab  <span class=se>\
+</span><span class=se></span> -v /home/gitlab/log:/var/log/gitlab <span class=se>\
+</span><span class=se></span> -v /home/gitlab/opt:/var/opt/gitlab <span class=se>\
+</span><span class=se></span> --restart always <span class=se>\
+</span><span class=se></span> --privileged<span class=o>=</span><span class=nb>true</span> <span class=se>\
+</span><span class=se></span> --name gitlab <span class=se>\
+</span><span class=se></span> gitlab/gitlab-ce
+</code></pre></td></tr></table></div></div><blockquote><p>接下来的配置请在容器内进行修改，不要在挂载到宿主机的文件上进行修改。否则可能出现配置更新不到容器内，或者是不能即时更新到容器内，导致gitlab启动成功，但是无法访问</p></blockquote><h3 id=3-修改配置>3. 修改配置</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1>#进容器内部</span>
+docker <span class=nb>exec</span> -it gitlab /bin/bash
+ 
+<span class=c1>#修改gitlab.rb</span>
+vi /etc/gitlab/gitlab.rb
+ 
+<span class=c1>#加入如下</span>
+<span class=c1>#gitlab访问地址，可以写域名。如果端口不写的话默认为80端口</span>
+external_url <span class=s1>&#39;http://192.168.124.194&#39;</span>
+<span class=c1>#ssh主机ip</span>
+gitlab_rails<span class=o>[</span><span class=s1>&#39;gitlab_ssh_host&#39;</span><span class=o>]</span> <span class=o>=</span> <span class=s1>&#39;192.168.124.194&#39;</span>
+<span class=c1>#ssh连接端口</span>
+gitlab_rails<span class=o>[</span><span class=s1>&#39;gitlab_shell_ssh_port&#39;</span><span class=o>]</span> <span class=o>=</span> <span class=m>9922</span>
+
+<span class=c1># 保存并退出编辑模式</span>
+ 
+<span class=c1># 让配置生效</span>
+gitlab-ctl reconfigure
+</code></pre></td></tr></table></div></div><blockquote><p>注意不要重启，/etc/gitlab/gitlab.rb文件的配置会映射到gitlab.yml这个文件，由于在docker中运行，在gitlab上生成的http地址应该是http://192.168.124.194:9980,所以，要修改下面文件</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 修改http和ssh配置</span>
+vi /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml
+ 
+  gitlab:
+    host: 192.168.124.194
+    port: <span class=m>9980</span> <span class=c1># 这里改为9980</span>
+    https: <span class=nb>false</span>
+</code></pre></td></tr></table></div></div><p>或者在设置<code>external_url</code>时附上端口<code>external_url 'http://192.168.124.194:9980'</code></p><h3 id=4-重启gitlab不是重启容器>4. 重启gitlab[<strong>不是重启容器</strong>]</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>gitlab-ctl restart
+</code></pre></td></tr></table></div></div><h3 id=5-浏览器访问>5. 浏览器访问</h3><p>路径访问：http://192.168.124.194:9980/</p><blockquote><p>机器内存配置要大于4G, 否则容易出现启动不成功, 链接访问返回502错误</p></blockquote><h3 id=6-修改root密码>6. 修改root密码</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 进入容器内部</span>
+docker <span class=nb>exec</span> -it gitlab /bin/bash
+ 
+<span class=c1># 进入控制台</span>
+gitlab-rails console -e production
+ 
+<span class=c1># 查询id为1的用户，id为1的用户是超级管理员</span>
+<span class=nv>user</span> <span class=o>=</span> User.where<span class=o>(</span>id:1<span class=o>)</span>.first
+<span class=c1># 修改密码为lhx123456</span>
+user.password<span class=o>=</span><span class=s1>&#39;lhx123456&#39;</span>
+<span class=c1># 保存</span>
+user.save!
+<span class=c1># 退出</span>
+<span class=nb>exit</span>
+</code></pre></td></tr></table></div></div><h2 id=在原生系统上进行安装以ubuntu为例-更多方式请访问官方网站httpsgitlabcninstall>在原生系统上进行安装(以ubuntu为例, 更多方式请访问官方网站https://gitlab.cn/install/)</h2><h3 id=1-安装和配置必须的依赖项>1. 安装和配置必须的依赖项</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>sudo apt-get update
+   sudo apt-get install -y curl openssh-server ca-certificates tzdata perl 
+</code></pre></td></tr></table></div></div><blockquote><p>（可选）下一步，安装 Postfix 以发送电子邮件通知。如果您想使用其他解决方案发送电子邮件，请跳过此步骤并在安装极狐GitLab 后配置外部 SMTP 服务器。</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>sudo apt-get install -y postfix
+</code></pre></td></tr></table></div></div><p>在安装 Postfix 的过程中可能会出现一个配置界面，在该界面中选择“Internet Site”并按下回车。把“mail name”设置为您服务器的外部 DNS 域名并按下回车。如果还有其它配置界面出现，继续按下回车以接受默认配置。</p><h3 id=2-下载安装极狐gitlab>2. 下载/安装极狐GitLab</h3><p>配置极狐GitLab 软件源镜像。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>curl -fsSL https://packages.gitlab.cn/repository/raw/scripts/setup.sh <span class=p>|</span> /bin/bash
+</code></pre></td></tr></table></div></div><p>接下来，安装极狐GitLab。更改 <a href=https://gitlab.example.com>https://gitlab.example.com</a> 为您要访问极狐GitLab 实例的 URL。此配置可在配置文件进行再次修改（见docker安装方法）。</p><p>如果您想为初始管理员用户(root)指定自定义密码，请查看文档。如果未指定密码，将自动生成随机密码。密码同样可进行修改（见docker安装方法）。</p><p>执行如下命令开始安装：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>sudo <span class=nv>EXTERNAL_URL</span><span class=o>=</span><span class=s2>&#34;https://gitlab.example.com&#34;</span> apt-get install gitlab-jh
+</code></pre></td></tr></table></div></div><h3 id=3-访问极狐gitlab-实例并登录>3. 访问极狐GitLab 实例并登录</h3><p>除非您在安装过程中指定了自定义密码，否则将随机生成一个密码并存储在 /etc/gitlab/initial_root_password 文件中(出于安全原因，24 小时后，此文件会被第一次 gitlab-ctl reconfigure 自动删除，因此若使用随机密码登录，建议安装成功初始登录成功之后，立即修改初始密码）。使用此密码和用户名 root 登录。</p><h3 id=4-后续配置>4. 后续配置</h3><p>完成安装后，请参考建议的后续配置，包括身份验证选项和注册限制的配置。（更多后续配置请访问https://gitlab.cn/install/）</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2024-02-03</span></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/gitlab/>GitLab</a>,&nbsp;<a href=/tags/%E5%AE%89%E8%A3%85/>安装</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/python/centos%E4%B8%AD%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85python/ class=prev rel=prev title=centos中编译安装Python><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>centos中编译安装Python</a>
+<a href=/posts/docker/clash-python%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/ class=next rel=next title=Clash-Python环境搭建>Clash-Python环境搭建<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>QiMington</a></span></div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><span class=license><img src=/beian.png style=vertical-align:middle;height:16.5px><a href="https://beian.mps.gov.cn/#/query/webSearch?code=42088102000171" rel=noreferrer target=_blank>鄂公网安备42088102000171</a></span><span class=icp-splitter>&nbsp;&nbsp;|&nbsp;</span><br class=icp-br><span class=icp><a href=https://beian.miit.gov.cn target=_blank>鄂ICP备2022006388号</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

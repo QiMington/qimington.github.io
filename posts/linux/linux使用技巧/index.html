@@ -1,0 +1,136 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>linux使用技巧 - QiMington's</title><meta name=keywords content="贺兴宇,QiMington,启明顿,个人博客,blog.qimington.com"><meta name=description content="我在这里分享一些有趣的东西，寻找志同道合的朋友。I am here to share some interesting things and find like-minded friends."><meta property="og:title" content="linux使用技巧"><meta property="og:description" content="查看日志 1 2 3 4 5 6  # 查看动态日志 tail -F 文件名字 # 查看文件 cat 文件 # 查找文件中的名字 find -name 路径   查看服务 1 2 3 4 5  # 查看端口进程 # 端口(eg:8080) netstat -nltp|grep 端口号 # 进程(eg:java) ps -aux|grep 进程名   常用命令 查看当前目录下的所有文件：LL
+复制：CP
+移动：MV
+删除：Rf
+查看历史用过的命令：history
+拷贝目录 1 2 3 4 5 6 7  # 命令 cp -r 目录名称 目录拷贝的目标位置 # -r代表递归 # 示例 # 将/usr/tmp目录下的aaa目录复制到/usr目录下面 cp -r /usr/temp/aaa /usr # 注意 # cp命令不仅可以拷贝目录，还可以拷贝文件、压缩包等，拷贝文件和压缩包时不用写-r递归   搜索目录【查】find 1 2 3 4 5  # 命令 find 目录 参数 文件名称 # 示例 # 查找/usr/temp目录下的所有以a开头的目录或文件 find /usrtemp -name 'a*'   创建文件 1 2 3 4 5  # 命令 touch 文件名 # 示例 # 在当前目录创建一个名为aa."><meta property="og:type" content="article"><meta property="og:url" content="/posts/linux/linux%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"><meta property="article:published_time" content="2023-03-11T16:45:40+08:00"><meta property="article:modified_time" content="2023-03-11T16:45:40+08:00"><meta property="og:site_name" content="QiMington's"><meta name=twitter:card content="summary"><meta name=twitter:title content="linux使用技巧"><meta name=twitter:description content="查看日志 1 2 3 4 5 6  # 查看动态日志 tail -F 文件名字 # 查看文件 cat 文件 # 查找文件中的名字 find -name 路径   查看服务 1 2 3 4 5  # 查看端口进程 # 端口(eg:8080) netstat -nltp|grep 端口号 # 进程(eg:java) ps -aux|grep 进程名   常用命令 查看当前目录下的所有文件：LL
+复制：CP
+移动：MV
+删除：Rf
+查看历史用过的命令：history
+拷贝目录 1 2 3 4 5 6 7  # 命令 cp -r 目录名称 目录拷贝的目标位置 # -r代表递归 # 示例 # 将/usr/tmp目录下的aaa目录复制到/usr目录下面 cp -r /usr/temp/aaa /usr # 注意 # cp命令不仅可以拷贝目录，还可以拷贝文件、压缩包等，拷贝文件和压缩包时不用写-r递归   搜索目录【查】find 1 2 3 4 5  # 命令 find 目录 参数 文件名称 # 示例 # 查找/usr/temp目录下的所有以a开头的目录或文件 find /usrtemp -name 'a*'   创建文件 1 2 3 4 5  # 命令 touch 文件名 # 示例 # 在当前目录创建一个名为aa."><meta name=application-name content="QiMington's"><meta name=apple-mobile-web-app-title content="QiMington's"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=/avatar.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=/posts/linux/linux%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/><link rel=prev href=/posts/%E5%89%8D%E7%AB%AF/><link rel=next href=/posts/nginx/nginx%E7%AC%94%E8%AE%B0/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css><meta name=google-site-verification content="gKS_lOzqrL6dS6WciO5_y1FmkXkuK6581tNNUSFvYq4"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"linux使用技巧","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"\/posts\/linux\/linux%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7\/"},"genre":"posts","keywords":"Linux, 使用技巧","wordcount":307,"url":"\/posts\/linux\/linux%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7\/","datePublished":"2023-03-11T16:45:40+08:00","dateModified":"2023-03-11T16:45:40+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"QiMington"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="QiMington's">QiMington</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="QiMington's">QiMington</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/>首页</a><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">linux使用技巧</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>QiMington</a>
+</span>&nbsp;<span class=post-category>收录于 <a href=/categories/linux/><i class="far fa-folder fa-fw" aria-hidden=true></i>linux</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2023-03-11>2023-03-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 307 字&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 2 分钟&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#查看日志>查看日志</a></li><li><a href=#查看服务>查看服务</a></li><li><a href=#常用命令>常用命令</a></li><li><a href=#拷贝目录>拷贝目录</a></li><li><a href=#搜索目录查find>搜索目录【查】find</a></li><li><a href=#创建文件>创建文件</a></li><li><a href=#删除文件>删除文件</a></li><li><a href=#修改文件vi或vim>修改文件，vi或vim</a></li><li><a href=#打开文件>打开文件</a></li><li><a href=#编辑文件>编辑文件</a></li><li><a href=#保存或者取消编辑>保存或者取消编辑</a></li><li><a href=#文件的查看>文件的查看</a></li><li><a href=#权限修改>权限修改</a></li><li><a href=#压缩操作>压缩操作</a></li><li><a href=#解压>解压</a></li><li><a href=#更改密码>更改密码</a></li></ul></nav></div></div><div class=content id=content><h2 id=查看日志>查看日志</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 查看动态日志</span>
+tail -F 文件名字
+<span class=c1># 查看文件</span>
+cat 文件
+<span class=c1># 查找文件中的名字</span>
+find -name 路径
+</code></pre></td></tr></table></div></div><h2 id=查看服务>查看服务</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 查看端口进程</span>
+<span class=c1># 端口(eg:8080)</span>
+netstat -nltp<span class=p>|</span>grep 端口号
+<span class=c1># 进程(eg:java)</span>
+ps -aux<span class=p>|</span>grep 进程名
+</code></pre></td></tr></table></div></div><h2 id=常用命令>常用命令</h2><p>查看当前目录下的所有文件：LL</p><p>复制：CP</p><p>移动：MV</p><p>删除：Rf</p><p>查看历史用过的命令：history</p><h2 id=拷贝目录>拷贝目录</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 命令</span>
+cp -r 目录名称 目录拷贝的目标位置 <span class=c1># -r代表递归</span>
+<span class=c1># 示例</span>
+<span class=c1># 将/usr/tmp目录下的aaa目录复制到/usr目录下面</span>
+cp -r /usr/temp/aaa /usr
+<span class=c1># 注意</span>
+<span class=c1># cp命令不仅可以拷贝目录，还可以拷贝文件、压缩包等，拷贝文件和压缩包时不用写-r递归</span>
+</code></pre></td></tr></table></div></div><h2 id=搜索目录查find>搜索目录【查】find</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 命令</span>
+find 目录 参数 文件名称
+<span class=c1># 示例</span>
+<span class=c1># 查找/usr/temp目录下的所有以a开头的目录或文件</span>
+find /usrtemp -name <span class=s1>&#39;a*&#39;</span>
+</code></pre></td></tr></table></div></div><h2 id=创建文件>创建文件</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 命令</span>
+touch 文件名
+<span class=c1># 示例</span>
+<span class=c1># 在当前目录创建一个名为aa.txt的文件</span>
+touch aa.txt
+</code></pre></td></tr></table></div></div><h2 id=删除文件>删除文件</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 命令</span>
+rm -rf 文件名
+</code></pre></td></tr></table></div></div><h2 id=修改文件vi或vim>修改文件，<em>vi</em>或<em>vim</em></h2><p>vi编辑器的三种模式</p><p>基本上vi可以分为三种状态，分别是命令模式（command mode）、插入模式（insert mode）和底行模式（last line mode）,各模式功能区别如下：</p><ol><li><p>命令行模式</p><p>控制屏幕光标的移动、字符、字或行的删除、查找、移动复制某区段及进入insert mode下，或者到last line mode，命令行模式下的常用命令：</p><ul><li>控制光标移动：⬆，⬇，⬅，➡</li><li>删除当前行：dd</li><li>查找：/字符</li><li>进入编辑模式：i o a</li><li>进入底行模式：:</li></ul></li><li><p>命令行模式</p><p>只有在insert mode下，才可以做文字输入，按[ESC]键盘可以回到命令模式。</p><p>编辑模式下常用命令：</p><ul><li>退出编辑模式回到命令行模式：ESC</li></ul></li><li><p>底行模式</p><p>将文件保存或退出vi，也可以设置编辑环境，如寻找字符串、列出行号等，底行模式下常用命令：</p><ul><li>退出编辑：:q</li><li>强制退出：:q!</li><li>保存并退出：:wq</li></ul></li></ol><h2 id=打开文件>打开文件</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 命令</span>
+vi 文件名
+<span class=c1># 示例</span>
+<span class=c1># 打开当前目录下的aa.txt文件</span>
+vi aa.txt 或者 vim aa.txt
+<span class=c1># 注意</span>
+<span class=c1># 使用vi编辑器打开文件后，并不能编辑，因为此时处于命令模式，点击键盘i/a/o进入编辑模式。</span>
+</code></pre></td></tr></table></div></div><h2 id=编辑文件>编辑文件</h2><p>使用vi编辑器打开文件后点击按键：i, a或者o即可进入编辑模式。</p><p>i：在光标所在字符前开始插入</p><p>a：在光标所在字符后开始插入</p><p>o：在光标所在行的下面另起一新行插入</p><h2 id=保存或者取消编辑>保存或者取消编辑</h2><p><strong>保存文件：</strong></p><p>第一步：ESC进入命令行模式</p><p>第二步：:进入底行模式</p><p>第三步：wq保存并退出编辑</p><p><strong>取消编辑：</strong></p><p>第一步：ESC进入命令行模式</p><p>第二步：:进入底行模式</p><p>第三步：q!撤销本次修改并退出编辑</p><h2 id=文件的查看>文件的查看</h2><p>文件的查看命令：cat/more/less/tail</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># cat：查看最后一屏</span>
+<span class=c1># 示例</span>
+<span class=c1># 使用cat查看/etc/sudo.conf文件，只能显示最后一屏内容</span>
+cat /etc/sudo.conf
+
+<span class=c1># more：百分比显示</span>
+<span class=c1># 示例</span>
+<span class=c1># 使用more查看/etc/sudo.conf文件，可以显示百分比，回车可以向下一行，空格可以向下一页，q可以退出查看</span>
+more /etc/sudo.conf
+
+<span class=c1># less：翻页查看</span>
+<span class=c1># 示例</span>
+<span class=c1># 使用less查看/etc/sudo.conf文件，可以使用键盘上的PgUp和PgDn向上和向下翻页，q结束查看</span>
+less /etc/sudo.conf
+
+<span class=c1># tail：指定行数或者动态查看</span>
+<span class=c1># 示例</span>
+<span class=c1># 使用tail -10查看/etc/sudo.conf文件的后10行，Ctrl+C结束</span>
+tail -10 /etc/sudo.conf
+</code></pre></td></tr></table></div></div><h2 id=权限修改>权限修改</h2><p>rwx：r代表可读，w代表可写，x代表该文件是一个可执行文件，如果rwx任意位置变为-则代表不可读或不可写或不可执行文件。</p><p>示例：给aaa.txt文件权限改为可执行文件权限，aaa.txt文件的权限是-rw&mdash;&mdash;-</p><p>第一位：-代表是文件，d代表是文件夹</p><p>第一段（3位）：代表拥有者的权限</p><p>第二段（3位）：代表拥有者所在组，组员的权限</p><p>第三段（最后3位）：代表的是其它用户的权限</p><h2 id=压缩操作>压缩操作</h2><p>Windows的压缩文件的扩展名 .zip/.rar</p><p>linux中的打包文件：aa.tar</p><p>linux中的压缩文件：aa.gz</p><p>linux中打包并压缩的文件：.tar.gz</p><p>Linux中的打包文件一般是以.tar结尾的，压缩的文件一般是以.gz结尾。而一般情况下打包和压缩是一起进行的，打包并压缩后的文件的后缀名一般为.tar.gz。</p><p>命令：tar -zcvf 打包压缩后的文件名 要打包的文件</p><p>其中：</p><ul><li>z：调用gzip压缩命令进行压缩</li><li>c：打包文件</li><li>v：显示运行过程</li><li>f：指定文件名</li></ul><p>示例：打包并压缩/usr/tmp下的所有文件，压缩后的压缩包指定名称为xxx.tar</p><p>tar -zcvf ab.tar /usr/tmp/aa.txt /usr/tmp/bb.txt</p><p>或 tar -zcvf ab.tar /usr/tmp/*</p><h2 id=解压>解压</h2><p>命令：tar [-zxvf] 压缩文件</p><p>其中：</p><p>-x 代表解压</p><p>示例：将/usr/temp下的ab.tar解压到当前目录下</p><p>tar -zxvf /usr/temp/ab.tar</p><p>示例：将/usr/temp下的ab.tar解压到根目录/usr下</p><p>tar -zxvf ab.tar -C /usr</p><p>其中：</p><p>-c 代表指定解压的位置</p><h2 id=更改密码>更改密码</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 更改当前用户的密码，没有密码则为设置密码</span>
+passwd
+<span class=c1># 操作的用户是root用户</span>
+sudo passwd
+</code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2023-03-11</span></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/linux/>linux</a>,&nbsp;<a href=/tags/%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/>使用技巧</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/%E5%89%8D%E7%AB%AF/ class=prev rel=prev title=项目中同时请求多个接口><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>项目中同时请求多个接口</a>
+<a href=/posts/nginx/nginx%E7%AC%94%E8%AE%B0/ class=next rel=next title=nginx笔记>nginx笔记<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>QiMington</a></span></div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><span class=license><img src=/beian.png style=vertical-align:middle;height:16.5px><a href="https://beian.mps.gov.cn/#/query/webSearch?code=42088102000171" rel=noreferrer target=_blank>鄂公网安备42088102000171</a></span><span class=icp-splitter>&nbsp;&nbsp;|&nbsp;</span><br class=icp-br><span class=icp><a href=https://beian.miit.gov.cn target=_blank>鄂ICP备2022006388号</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lightgallery-bundle.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/thumbnail/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/zoom/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

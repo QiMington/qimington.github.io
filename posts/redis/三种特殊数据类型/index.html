@@ -1,0 +1,228 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>三种特殊数据类型 - QiMington's</title><meta name=keywords content="贺兴宇,QiMington,启明顿,个人博客,blog.qimington.com"><meta name=description content="我在这里分享一些有趣的东西，寻找志同道合的朋友。I am here to share some interesting things and find like-minded friends."><meta property="og:title" content="三种特殊数据类型"><meta property="og:description" content="Geospatial 可以推算地理位置信息，方圆几里的人
+ geoadd 添加地理信息
+ 1 2 3 4 5 6 7 8 9 10 11  # 添加地理位置 # 规则：两极无法直接添加，一般会下载城市数据，直接通过java程序一次性导入。 # 参数 key 值（经度、纬度、名称） # 有效经度从-180度到180度 # 有效纬度从-85.05112878度到85.05112878度 127.0.0.1:6379> geoadd china:city 116.40 39.90 beijing (integer) 1 127.0.0.1:6379> geoadd china:city 121.47 31.23 shanghai (integer) 1 127.0.0.1:6379> geoadd china:city 106.50 29.53 chongqing 114.05 22.52 shengzhen 120.16 30.24 hangzhou 108.96 34.26 xian (integer) 4    geopos从key里返回所有给定位置元素的位置（经度和纬度）
+ 1 2 3 4 5 6 7 8 9 10 11  127."><meta property="og:type" content="article"><meta property="og:url" content="/posts/redis/%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"><meta property="article:published_time" content="2022-07-08T15:42:40+08:00"><meta property="article:modified_time" content="2022-07-08T15:42:40+08:00"><meta property="og:site_name" content="QiMington's"><meta name=twitter:card content="summary"><meta name=twitter:title content="三种特殊数据类型"><meta name=twitter:description content="Geospatial 可以推算地理位置信息，方圆几里的人
+ geoadd 添加地理信息
+ 1 2 3 4 5 6 7 8 9 10 11  # 添加地理位置 # 规则：两极无法直接添加，一般会下载城市数据，直接通过java程序一次性导入。 # 参数 key 值（经度、纬度、名称） # 有效经度从-180度到180度 # 有效纬度从-85.05112878度到85.05112878度 127.0.0.1:6379> geoadd china:city 116.40 39.90 beijing (integer) 1 127.0.0.1:6379> geoadd china:city 121.47 31.23 shanghai (integer) 1 127.0.0.1:6379> geoadd china:city 106.50 29.53 chongqing 114.05 22.52 shengzhen 120.16 30.24 hangzhou 108.96 34.26 xian (integer) 4    geopos从key里返回所有给定位置元素的位置（经度和纬度）
+ 1 2 3 4 5 6 7 8 9 10 11  127."><meta name=application-name content="QiMington's"><meta name=apple-mobile-web-app-title content="QiMington's"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=/avatar.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=/posts/redis/%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/><link rel=prev href=/posts/redis/%E4%BA%94%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/><link rel=next href=/posts/redis/%E6%B7%B1%E5%85%A5/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css><meta name=google-site-verification content="gKS_lOzqrL6dS6WciO5_y1FmkXkuK6581tNNUSFvYq4"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"三种特殊数据类型","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"\/posts\/redis\/%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B\/"},"genre":"posts","keywords":"Redis, 笔记","wordcount":526,"url":"\/posts\/redis\/%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B\/","datePublished":"2022-07-08T15:42:40+08:00","dateModified":"2022-07-08T15:42:40+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"QiMington"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="QiMington's">QiMington</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="QiMington's">QiMington</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/>首页</a><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">三种特殊数据类型</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>QiMington</a>
+</span>&nbsp;<span class=post-category>收录于 <a href=/categories/redis/><i class="far fa-folder fa-fw" aria-hidden=true></i>Redis</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2022-07-08>2022-07-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 526 字&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 3 分钟&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#geospatial>Geospatial</a></li><li><a href=#hyperloglog>Hyperloglog</a></li><li><a href=#bitmap>Bitmap</a></li></ul></nav></div></div><div class=content id=content><h2 id=geospatial>Geospatial</h2><p>可以推算地理位置信息，方圆几里的人</p><blockquote><p>geoadd 添加地理信息</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 添加地理位置</span>
+<span class=c1># 规则：两极无法直接添加，一般会下载城市数据，直接通过java程序一次性导入。</span>
+<span class=c1># 参数 key 值（经度、纬度、名称）</span>
+<span class=c1># 有效经度从-180度到180度</span>
+<span class=c1># 有效纬度从-85.05112878度到85.05112878度</span>
+127.0.0.1:6379&gt; geoadd china:city 116.40 39.90 beijing
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+127.0.0.1:6379&gt; geoadd china:city 121.47 31.23 shanghai
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+127.0.0.1:6379&gt; geoadd china:city 106.50 29.53 chongqing 114.05 22.52 shengzhen 120.16 30.24 hangzhou 108.96 34.26 xian
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>4</span>
+</code></pre></td></tr></table></div></div><blockquote><p>geopos从key里返回所有给定位置元素的位置（经度和纬度）</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; geopos china:city beijing
+1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;116.39999896287918091&#34;</span>
+   2<span class=o>)</span> <span class=s2>&#34;39.90000009167092543&#34;</span>
+127.0.0.1:6379&gt; geopos china:city chongqing
+1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;106.49999767541885376&#34;</span>
+   2<span class=o>)</span> <span class=s2>&#34;29.52999957900659211&#34;</span>
+127.0.0.1:6379&gt; geopos china:city shengzhen hangzhou
+1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;114.04999762773513794&#34;</span>
+   2<span class=o>)</span> <span class=s2>&#34;22.5200000879503861&#34;</span>
+2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;120.1600000262260437&#34;</span>
+   2<span class=o>)</span> <span class=s2>&#34;30.2400003229490224&#34;</span>
+</code></pre></td></tr></table></div></div><blockquote><p>deodist返回两个给顶顶位置之间的距离</p></blockquote><p>单位：</p><p>m表示单位为米</p><p>km表示单位为千米</p><p>mi表示单位为英里</p><p>ft表示单位为英尺</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 直线距离</span>
+127.0.0.1:6379&gt; geodist china:city shanghai beijing
+<span class=s2>&#34;1067378.7564&#34;</span>
+127.0.0.1:6379&gt; geodist china:city shanghai beijing km 
+<span class=s2>&#34;1067.3788&#34;</span>
+</code></pre></td></tr></table></div></div><blockquote><p>georadius以给定的经纬度为中心，找出某一半径内的元素</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; GEORADIUS china:city <span class=m>110</span> <span class=m>30</span> <span class=m>500</span> km withdist	<span class=c1># 显示距离</span>
+1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;chongqing&#34;</span>
+   2<span class=o>)</span> <span class=s2>&#34;341.9374&#34;</span>
+2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;xian&#34;</span>
+   2<span class=o>)</span> <span class=s2>&#34;483.8340&#34;</span>
+127.0.0.1:6379&gt; GEORADIUS china:city <span class=m>110</span> <span class=m>30</span> <span class=m>500</span> km withcoord	<span class=c1># 显示经纬度</span>
+1<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;chongqing&#34;</span>
+   2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;106.49999767541885376&#34;</span>
+      2<span class=o>)</span> <span class=s2>&#34;29.52999957900659211&#34;</span>
+2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;xian&#34;</span>
+   2<span class=o>)</span> 1<span class=o>)</span> <span class=s2>&#34;108.96000176668167114&#34;</span>
+      2<span class=o>)</span> <span class=s2>&#34;34.25999964418929977&#34;</span>
+127.0.0.1:6379&gt; GEORADIUS china:city <span class=m>110</span> <span class=m>30</span> <span class=m>500</span> km count 1	<span class=c1># 显示指定数量</span>
+1<span class=o>)</span> <span class=s2>&#34;chongqing&#34;</span>
+</code></pre></td></tr></table></div></div><blockquote><p>georadiusbymember找出位于指定范围内的元素，中心点是由给定的位置元素决定</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; GEORADIUSBYMEMBER china:city beijing <span class=m>1000</span> km
+1<span class=o>)</span> <span class=s2>&#34;beijing&#34;</span>
+2<span class=o>)</span> <span class=s2>&#34;xian&#34;</span>
+127.0.0.1:6379&gt; GEORADIUSBYMEMBER china:city xian <span class=m>400</span> km
+1<span class=o>)</span> <span class=s2>&#34;xian&#34;</span>
+</code></pre></td></tr></table></div></div><blockquote><p>geohash返回一个或者多个位置元素的geohash值</p></blockquote><p>该命令将返回11个字符的geohash字符串</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 将二维的经纬度转换为一维的字符串，如果两个字符串越接近，那么距离越接近</span>
+127.0.0.1:6379&gt; GEOHASH china:city shanghai beijing
+1<span class=o>)</span> <span class=s2>&#34;wtw3sj5zbj0&#34;</span>
+2<span class=o>)</span> <span class=s2>&#34;wx4fbxxfke0&#34;</span>
+</code></pre></td></tr></table></div></div><blockquote><p>GEO底层的实现原理其实是Zset，可以使用zset命令来操作geo</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; zrange china:city <span class=m>0</span> -1
+1<span class=o>)</span> <span class=s2>&#34;chongqing&#34;</span>
+2<span class=o>)</span> <span class=s2>&#34;xian&#34;</span>
+3<span class=o>)</span> <span class=s2>&#34;shengzhen&#34;</span>
+4<span class=o>)</span> <span class=s2>&#34;hangzhou&#34;</span>
+5<span class=o>)</span> <span class=s2>&#34;shanghai&#34;</span>
+6<span class=o>)</span> <span class=s2>&#34;beijing&#34;</span>
+127.0.0.1:6379&gt; zrem china:city beijing
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+127.0.0.1:6379&gt; zrange china:city <span class=m>0</span> -1
+1<span class=o>)</span> <span class=s2>&#34;chongqing&#34;</span>
+2<span class=o>)</span> <span class=s2>&#34;xian&#34;</span>
+3<span class=o>)</span> <span class=s2>&#34;shengzhen&#34;</span>
+4<span class=o>)</span> <span class=s2>&#34;hangzhou&#34;</span>
+5<span class=o>)</span> <span class=s2>&#34;shanghai&#34;</span>
+</code></pre></td></tr></table></div></div><h2 id=hyperloglog>Hyperloglog</h2><blockquote><p>什么是基数？</p></blockquote><p>A{1, 3, 5, 7, 8, 7}</p><p>B{1, 3, 5, 7, 8}</p><p>基数（不重复的元素）=5，可以接受误差</p><blockquote><p>简介（布隆过滤器）</p></blockquote><p>Redis Hyperloglog基数统计的算法</p><p>优点：占用的内存数固定的，2^64不同的元素的技术，只需耗费12KB内存，如果从内存角度来比较的话Hyperloglog首选。</p><p>但是有0.81%的错误率。</p><p><strong>网页的UV（一个人访问一个网站多次，但还是算作一个人）</strong></p><p>传统的方式：色图保存用户的id，然后就可以统计set中的元素数量作为标准判读！</p><p>这个方式如果保存大量的用户id，就会比较麻烦。但目的是为了计数，而不是保存用户id，因此会浪费大量内存。</p><p>使用Hyperloglog可以忽略其错误率。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; pfadd mykey a b c d e f g h i j	<span class=c1># 创建第一组元素mykey</span>
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+127.0.0.1:6379&gt; pfcount mykey	<span class=c1># 统计mykey元素的基数数量（非重复）</span>
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>10</span>
+127.0.0.1:6379&gt; pfadd mykey a
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+127.0.0.1:6379&gt; pfcount mykey
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>10</span>
+127.0.0.1:6379&gt; pfadd mykey2 i j z x c v b n m
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+127.0.0.1:6379&gt; pfcount mykey2
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>9</span>
+127.0.0.1:6379&gt; pfmerge mykey3 mykey mykey2	<span class=c1># 合并多组到mykey3</span>
+OK
+127.0.0.1:6379&gt; pfcount mykey3
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>15</span>
+127.0.0.1:6379&gt; pfcount mykey
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>10</span>
+</code></pre></td></tr></table></div></div><p>如果允许容错，那么一定可以使用Hyperloglog。</p><p>如果不允许出错，就是用set或者自己的数据类型即可。</p><h2 id=bitmap>Bitmap</h2><blockquote><p>位存储（0或1）</p></blockquote><p>统计用户信息：活跃，不活跃；登录，未登录；打卡，未打卡。</p><p>两个状态的都可以使用Bitmap</p><p>Bitmaps位图，数据结构，都是操作二进制位来进行记录，只有0和1两个状态。</p><blockquote><p>测试</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=c1># 使用bitmap来记录周一到周日的打卡</span>
+127.0.0.1:6379&gt; setbit sign <span class=m>0</span> <span class=m>1</span>
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+127.0.0.1:6379&gt; setbit sign <span class=m>1</span> <span class=m>0</span>
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+127.0.0.1:6379&gt; setbit sign <span class=m>2</span> <span class=m>0</span>
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+127.0.0.1:6379&gt; setbit sign <span class=m>3</span> <span class=m>0</span>
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+127.0.0.1:6379&gt; setbit sign <span class=m>4</span> <span class=m>1</span>
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+127.0.0.1:6379&gt; setbit sign <span class=m>5</span> <span class=m>1</span>
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+127.0.0.1:6379&gt; setbit sign <span class=m>6</span> <span class=m>0</span>
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+<span class=c1># 查看某一天是否有打卡</span>
+127.0.0.1:6379&gt; getbit sign <span class=m>3</span>
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+127.0.0.1:6379&gt; getbit sign <span class=m>6</span>
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+127.0.0.1:6379&gt; getbit sign <span class=m>0</span>
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+<span class=c1># 统计操作，统计打卡的天数</span>
+127.0.0.1:6379&gt; bitcount sign <span class=m>0</span> <span class=m>3</span>
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>3</span>
+</code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2022-07-08</span></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/redis/>Redis</a>,&nbsp;<a href=/tags/%E7%AC%94%E8%AE%B0/>笔记</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/redis/%E4%BA%94%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/ class=prev rel=prev title=五大数据类型><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>五大数据类型</a>
+<a href=/posts/redis/%E6%B7%B1%E5%85%A5/ class=next rel=next title=深入>深入<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>QiMington</a></span></div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><span class=license><img src=/beian.png style=vertical-align:middle;height:16.5px><a href="https://beian.mps.gov.cn/#/query/webSearch?code=42088102000171" rel=noreferrer target=_blank>鄂公网安备42088102000171</a></span><span class=icp-splitter>&nbsp;&nbsp;|&nbsp;</span><br class=icp-br><span class=icp><a href=https://beian.miit.gov.cn target=_blank>鄂ICP备2022006388号</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

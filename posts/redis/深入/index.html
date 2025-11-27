@@ -1,0 +1,242 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>深入 - QiMington's</title><meta name=keywords content="贺兴宇,QiMington,启明顿,个人博客,blog.qimington.com"><meta name=description content="我在这里分享一些有趣的东西，寻找志同道合的朋友。I am here to share some interesting things and find like-minded friends."><meta property="og:title" content="深入"><meta property="og:description" content="事务 Redis事务本质：一组命令的集合。一个事务中的所有命令都会被序列化，在事务执行的过程中，会按照顺序执行。
+因此，有特性：一次性、顺序性、排他性。
+Redis事务没有隔离级别的概率，所有的命令在事务中，并没有被直接执行。只有发起执行命令exec的时候才会执行。
+原子性：要么同时成功，要么同时失败
+Redis单条命令是保证原子性的，但事务不保证原子性。
+Redis的事务：
+ 开启事务（multi） 命令入队（&mldr;） 执行事务（exec）   正常执行事务
+ 1 2 3 4 5 6 7 8 9 10 11 12 13  127.0.0.1:6379> multi	# 开启事务 OK # 命令入队 127.0.0.1:6379(TX)> set k1 v1 QUEUED 127.0.0.1:6379(TX)> set k2 v2 QUEUED 127.0.0.1:6379(TX)> set k3 v2 QUEUED 127.0.0.1:6379(TX)> exec	# 执行事务 1) OK 2) OK 3) OK    放弃事务 discard
+ 1 2 3 4 5 6 7 8 9 10 11 12  127."><meta property="og:type" content="article"><meta property="og:url" content="/posts/redis/%E6%B7%B1%E5%85%A5/"><meta property="article:published_time" content="2022-07-08T21:22:40+08:00"><meta property="article:modified_time" content="2022-07-08T21:22:40+08:00"><meta property="og:site_name" content="QiMington's"><meta name=twitter:card content="summary"><meta name=twitter:title content="深入"><meta name=twitter:description content="事务 Redis事务本质：一组命令的集合。一个事务中的所有命令都会被序列化，在事务执行的过程中，会按照顺序执行。
+因此，有特性：一次性、顺序性、排他性。
+Redis事务没有隔离级别的概率，所有的命令在事务中，并没有被直接执行。只有发起执行命令exec的时候才会执行。
+原子性：要么同时成功，要么同时失败
+Redis单条命令是保证原子性的，但事务不保证原子性。
+Redis的事务：
+ 开启事务（multi） 命令入队（&mldr;） 执行事务（exec）   正常执行事务
+ 1 2 3 4 5 6 7 8 9 10 11 12 13  127.0.0.1:6379> multi	# 开启事务 OK # 命令入队 127.0.0.1:6379(TX)> set k1 v1 QUEUED 127.0.0.1:6379(TX)> set k2 v2 QUEUED 127.0.0.1:6379(TX)> set k3 v2 QUEUED 127.0.0.1:6379(TX)> exec	# 执行事务 1) OK 2) OK 3) OK    放弃事务 discard
+ 1 2 3 4 5 6 7 8 9 10 11 12  127."><meta name=application-name content="QiMington's"><meta name=apple-mobile-web-app-title content="QiMington's"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=/avatar.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=/posts/redis/%E6%B7%B1%E5%85%A5/><link rel=prev href=/posts/redis/%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/><link rel=next href=/posts/mybatis/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css><meta name=google-site-verification content="gKS_lOzqrL6dS6WciO5_y1FmkXkuK6581tNNUSFvYq4"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"深入","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"\/posts\/redis\/%E6%B7%B1%E5%85%A5\/"},"genre":"posts","keywords":"Redis, 笔记","wordcount":411,"url":"\/posts\/redis\/%E6%B7%B1%E5%85%A5\/","datePublished":"2022-07-08T21:22:40+08:00","dateModified":"2022-07-08T21:22:40+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"QiMington"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="QiMington's">QiMington</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="QiMington's">QiMington</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/>首页</a><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">深入</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>QiMington</a>
+</span>&nbsp;<span class=post-category>收录于 <a href=/categories/redis/><i class="far fa-folder fa-fw" aria-hidden=true></i>Redis</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2022-07-08>2022-07-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 411 字&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 2 分钟&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#事务>事务</a></li><li><a href=#乐观锁>乐观锁</a></li><li><a href=#jedis>Jedis</a></li></ul></nav></div></div><div class=content id=content><h2 id=事务>事务</h2><p>Redis事务本质：一组命令的集合。一个事务中的所有命令都会被序列化，在事务执行的过程中，会按照顺序执行。</p><p>因此，有特性：一次性、顺序性、排他性。</p><p>Redis事务没有隔离级别的概率，所有的命令在事务中，并没有被直接执行。只有发起执行命令exec的时候才会执行。</p><p>原子性：要么同时成功，要么同时失败</p><p>Redis单条命令是保证原子性的，但事务不保证原子性。</p><p>Redis的事务：</p><ul><li>开启事务（multi）</li><li>命令入队（&mldr;）</li><li>执行事务（exec）</li></ul><blockquote><p>正常执行事务</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; multi	<span class=c1># 开启事务</span>
+OK
+<span class=c1># 命令入队</span>
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k1 v1
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k2 v2
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k3 v2
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>exec</span>	<span class=c1># 执行事务</span>
+1<span class=o>)</span> OK
+2<span class=o>)</span> OK
+3<span class=o>)</span> OK
+</code></pre></td></tr></table></div></div><blockquote><p>放弃事务 discard</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; multi
+OK
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k4 v4
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k5 v5
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; get k4
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; discard	<span class=c1># 取消事务，事务队列中的命令都不会被执行</span>
+OK
+127.0.0.1:6379&gt; get k4
+<span class=o>(</span>nil<span class=o>)</span>
+</code></pre></td></tr></table></div></div><blockquote><p>编译型异常（代码有问题！命令有错），事务中所有的命令都不会被执行</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; multi
+OK
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k1 v1
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k2 v2
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k3 v3
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; gettt k2	<span class=c1># 错误的命令</span>
+<span class=o>(</span>error<span class=o>)</span> ERR unknown <span class=nb>command</span> <span class=s1>&#39;gettt&#39;</span>, with args beginning with: <span class=s1>&#39;k2&#39;</span>
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k4 v4
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k5 v5
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>exec</span>	<span class=c1># 执行事务报错</span>
+<span class=o>(</span>error<span class=o>)</span> EXECABORT Transaction discarded because of previous errors.
+127.0.0.1:6379&gt; get k1	<span class=c1># 所有的命令都不会被执行</span>
+<span class=o>(</span>nil<span class=o>)</span>
+</code></pre></td></tr></table></div></div><blockquote><p>运行时异常（1/0），如果事务队列中存在语法错误，那么执行命令的时候，其它命令可以正常执行，错误命令抛出异常</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; multi
+OK
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k1 <span class=s2>&#34;v1&#34;</span>
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; incr k1	<span class=c1># 执行失败</span>
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k2 v2
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>set</span> k3 v3
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; get k3
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>exec</span>
+1<span class=o>)</span> OK
+2<span class=o>)</span> <span class=o>(</span>error<span class=o>)</span> ERR value is not an integer or out of range	<span class=c1># 虽然报错，但事务依然正常执行</span>
+3<span class=o>)</span> OK
+4<span class=o>)</span> OK
+5<span class=o>)</span> <span class=s2>&#34;v3&#34;</span>
+127.0.0.1:6379&gt; get k1
+<span class=s2>&#34;v1&#34;</span>
+127.0.0.1:6379&gt; get k2
+<span class=s2>&#34;v2&#34;</span>
+</code></pre></td></tr></table></div></div><h2 id=乐观锁>乐观锁</h2><p>认为什么时候都不会出问题，无论做什么都不会上锁。更新数据的时候判断一下在此期间内是否有人修改过数据。</p><p>悲观锁，认为什么时候都会出问题，无论做什么都会加锁。</p><blockquote><p>监控 watch</p></blockquote><p>正常执行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; <span class=nb>set</span> money <span class=m>100</span>
+OK
+127.0.0.1:6379&gt; <span class=nb>set</span> out <span class=m>0</span>
+OK
+127.0.0.1:6379&gt; watch money	<span class=c1># 监视money</span>
+OK
+127.0.0.1:6379&gt; multi
+OK
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; decrby money <span class=m>20</span>
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; incrby out <span class=m>20</span>
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>exec</span>	<span class=c1># 比对监视的值是否发生了变化，没变，事务正常执行，期间money没有发生变动</span>
+1<span class=o>)</span> <span class=o>(</span>integer<span class=o>)</span> <span class=m>80</span>
+2<span class=o>)</span> <span class=o>(</span>integer<span class=o>)</span> <span class=m>20</span>
+</code></pre></td></tr></table></div></div><p>测试多线程修改值，监视失败，使用watch可以当作redis乐观锁使用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; watch money	<span class=c1># 监视money</span>
+OK
+127.0.0.1:6379&gt; multi
+OK
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; decrby money <span class=m>20</span>
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; incrby out <span class=m>20</span>
+QUEUED
+127.0.0.1:6379<span class=o>(</span>TX<span class=o>)</span>&gt; <span class=nb>exec</span>	<span class=c1># 执行之前，另外一个线程修改了money的值，这个时候会导致事务执行失败</span>
+<span class=o>(</span>nil<span class=o>)</span>
+127.0.0.1:6379&gt; unwatch	<span class=c1># 如果发现事务执行失败，就先放弃监视</span>
+OK
+127.0.0.1:6379&gt; watch money	<span class=c1># 重新监视，获取最新的值</span>
+OK
+</code></pre></td></tr></table></div></div><h2 id=jedis>Jedis</h2><blockquote><p>Jedis是Redis官方推荐的java连接开发工具！使用Java操作Redis操作Redis中间件！如果要使用Java操作redis，那么一定要对redis十分熟悉。</p></blockquote><blockquote><p>测试</p></blockquote><ol><li>导入对应的依赖</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-xml data-lang=xml><span class=nt>&lt;dependencies</span><span class=nt>&gt;</span>
+<span class=c>&lt;!--</span><span class=c>    导入jedis包</span><span class=c>--&gt;</span>
+    <span class=c>&lt;!--</span><span class=c> https://mvnrepository.com/artifact/redis.clients/jedis </span><span class=c>--&gt;</span>
+    <span class=nt>&lt;dependency</span><span class=nt>&gt;</span>
+        <span class=nt>&lt;groupId</span><span class=nt>&gt;</span>redis.clients<span class=nt>&lt;/groupId&gt;</span>
+        <span class=nt>&lt;artifactId</span><span class=nt>&gt;</span>jedis<span class=nt>&lt;/artifactId&gt;</span>
+        <span class=nt>&lt;version</span><span class=nt>&gt;</span>4.2.3<span class=nt>&lt;/version&gt;</span>
+    <span class=nt>&lt;/dependency&gt;</span>
+<span class=c>&lt;!--</span><span class=c>        fastjson</span><span class=c>--&gt;</span>
+    <span class=c>&lt;!--</span><span class=c> https://mvnrepository.com/artifact/com.alibaba/fastjson </span><span class=c>--&gt;</span>
+    <span class=nt>&lt;dependency</span><span class=nt>&gt;</span>
+        <span class=nt>&lt;groupId</span><span class=nt>&gt;</span>com.alibaba<span class=nt>&lt;/groupId&gt;</span>
+        <span class=nt>&lt;artifactId</span><span class=nt>&gt;</span>fastjson<span class=nt>&lt;/artifactId&gt;</span>
+        <span class=nt>&lt;version</span><span class=nt>&gt;</span>2.0.8<span class=nt>&lt;/version&gt;</span>
+    <span class=nt>&lt;/dependency&gt;</span>
+<span class=nt>&lt;/dependencies&gt;</span>
+</code></pre></td></tr></table></div></div><ol start=2><li>编码测试<ul><li>连接数据库</li><li>断开命令</li><li>断开连接</li></ul></li></ol></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2022-07-08</span></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/redis/>Redis</a>,&nbsp;<a href=/tags/%E7%AC%94%E8%AE%B0/>笔记</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/redis/%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/ class=prev rel=prev title=三种特殊数据类型><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>三种特殊数据类型</a>
+<a href=/posts/mybatis/ class=next rel=next title=MyBatis使用技巧>MyBatis使用技巧<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>QiMington</a></span></div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><span class=license><img src=/beian.png style=vertical-align:middle;height:16.5px><a href="https://beian.mps.gov.cn/#/query/webSearch?code=42088102000171" rel=noreferrer target=_blank>鄂公网安备42088102000171</a></span><span class=icp-splitter>&nbsp;&nbsp;|&nbsp;</span><br class=icp-br><span class=icp><a href=https://beian.miit.gov.cn target=_blank>鄂ICP备2022006388号</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

@@ -1,0 +1,108 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>Redis入门 - QiMington's</title><meta name=keywords content="贺兴宇,QiMington,启明顿,个人博客,blog.qimington.com"><meta name=description content="我在这里分享一些有趣的东西，寻找志同道合的朋友。I am here to share some interesting things and find like-minded friends."><meta property="og:title" content="Redis入门"><meta property="og:description" content="Linux下安装   下载安装包
+官网地址：https://redis.io/
+中文官网：http://www.redis.cn/
+或者root下：wget https://github.com/redis/redis/archive/7.0.2.tar.gz
+  解压Redis安装包！临时文件和程序一般放在/opt
+mv redis-7.0.2.tar.gz /opt
+tar -zxvf redis-7.0.2.tar.gz
+  进入解压后的文件，可以看到redis的配置文件
+cd /opt/redis-7.0.2
+  基本环境安装
+yum install gcc-c++
+查看安装是否成功
+gcc -v
+  基本环境安装
+cd /opt/redis-7.0.2
+make
+make install
+  redis的默认安装路径/usr/local/bin
+  将redis配置文件拷贝一份至该目录使用
+mkdir qmtconfig
+cp /opt/redis-7.0.2/redis.conf qmtconfig
+  redis默认不是后台启动，修改配置文件
+vim qmtconfig/redis.conf
+修改daemonize no为daemonize yes
+否则启动后就关掉了
+  启动redis服务
+使用指定配置文件启动
+redis-server qmtconfig/redis.conf
+  连接与测试连接
+redis-cli -p 6379"><meta property="og:type" content="article"><meta property="og:url" content="/posts/redis/redis%E5%85%A5%E9%97%A8/"><meta property="article:published_time" content="2022-06-22T21:26:40+08:00"><meta property="article:modified_time" content="2022-06-22T21:26:40+08:00"><meta property="og:site_name" content="QiMington's"><meta name=twitter:card content="summary"><meta name=twitter:title content="Redis入门"><meta name=twitter:description content="Linux下安装   下载安装包
+官网地址：https://redis.io/
+中文官网：http://www.redis.cn/
+或者root下：wget https://github.com/redis/redis/archive/7.0.2.tar.gz
+  解压Redis安装包！临时文件和程序一般放在/opt
+mv redis-7.0.2.tar.gz /opt
+tar -zxvf redis-7.0.2.tar.gz
+  进入解压后的文件，可以看到redis的配置文件
+cd /opt/redis-7.0.2
+  基本环境安装
+yum install gcc-c++
+查看安装是否成功
+gcc -v
+  基本环境安装
+cd /opt/redis-7.0.2
+make
+make install
+  redis的默认安装路径/usr/local/bin
+  将redis配置文件拷贝一份至该目录使用
+mkdir qmtconfig
+cp /opt/redis-7.0.2/redis.conf qmtconfig
+  redis默认不是后台启动，修改配置文件
+vim qmtconfig/redis.conf
+修改daemonize no为daemonize yes
+否则启动后就关掉了
+  启动redis服务
+使用指定配置文件启动
+redis-server qmtconfig/redis.conf
+  连接与测试连接
+redis-cli -p 6379"><meta name=application-name content="QiMington's"><meta name=apple-mobile-web-app-title content="QiMington's"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=/avatar.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=/posts/redis/redis%E5%85%A5%E9%97%A8/><link rel=prev href=/posts/ml/><link rel=next href=/posts/springboot/%E5%A5%BD%E7%94%A8%E7%9A%84%E8%AE%BE%E7%BD%AE/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css><meta name=google-site-verification content="gKS_lOzqrL6dS6WciO5_y1FmkXkuK6581tNNUSFvYq4"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Redis入门","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"\/posts\/redis\/redis%E5%85%A5%E9%97%A8\/"},"genre":"posts","keywords":"Redis, 笔记","wordcount":258,"url":"\/posts\/redis\/redis%E5%85%A5%E9%97%A8\/","datePublished":"2022-06-22T21:26:40+08:00","dateModified":"2022-06-22T21:26:40+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"QiMington"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="QiMington's">QiMington</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="QiMington's">QiMington</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/>首页</a><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Redis入门</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>QiMington</a>
+</span>&nbsp;<span class=post-category>收录于 <a href=/categories/redis/><i class="far fa-folder fa-fw" aria-hidden=true></i>Redis</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2022-06-22>2022-06-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 258 字&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 2 分钟&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#linux下安装>Linux下安装</a></li><li><a href=#测试性能>测试性能</a></li><li><a href=#基础知识>基础知识</a></li></ul></nav></div></div><div class=content id=content><h2 id=linux下安装>Linux下安装</h2><ol><li><p>下载安装包</p><p>官网地址：https://redis.io/</p><p>中文官网：http://www.redis.cn/</p><p>或者root下：<code>wget https://github.com/redis/redis/archive/7.0.2.tar.gz</code></p></li><li><p>解压Redis安装包！临时文件和程序一般放在/opt</p><p><code>mv redis-7.0.2.tar.gz /opt</code></p><p><code>tar -zxvf redis-7.0.2.tar.gz</code></p></li><li><p>进入解压后的文件，可以看到redis的配置文件</p><p><code>cd /opt/redis-7.0.2</code></p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623185907347.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623185907347.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623185907347.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623185907347.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623185907347.png title=image-20220623185907347></p></li><li><p>基本环境安装</p><p><code>yum install gcc-c++</code></p><p>查看安装是否成功</p><p><code>gcc -v</code></p></li><li><p>基本环境安装</p><p><code>cd /opt/redis-7.0.2</code></p><p><code>make</code></p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623192357769.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623192357769.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623192357769.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623192357769.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623192357769.png title=image-20220623192357769></p><p><code>make install</code></p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623192443298.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623192443298.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623192443298.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623192443298.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623192443298.png title=image-20220623192443298></p></li><li><p>redis的默认安装路径<code>/usr/local/bin</code></p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623194728305.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623194728305.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623194728305.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623194728305.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623194728305.png title=image-20220623194728305></p></li><li><p>将redis配置文件拷贝一份至该目录使用</p><p><code>mkdir qmtconfig</code></p><p><code>cp /opt/redis-7.0.2/redis.conf qmtconfig</code></p></li><li><p>redis默认不是后台启动，修改配置文件</p><p><code>vim qmtconfig/redis.conf</code></p><p>修改<code>daemonize no</code>为<code>daemonize yes</code></p><p>否则启动后就关掉了</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623210451325.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623210451325.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623210451325.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623210451325.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623210451325.png title=image-20220623210451325></p></li><li><p>启动redis服务</p><p>使用指定配置文件启动</p><p><code>redis-server qmtconfig/redis.conf</code></p></li><li><p>连接与测试连接</p><p><code>redis-cli -p 6379</code></p><p>或者</p><p><code>redis-cli -a 密码</code></p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623210523695.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623210523695.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623210523695.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623210523695.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623210523695.png title=image-20220623210523695></p></li><li><p>关闭服务与连接</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623210728918.png data-srcset="https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623210728918.png, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623210728918.png 1.5x, https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623210728918.png 2x" data-sizes=auto alt=https://cdn.jsdelivr.net/gh/QiMington/picbed/image-20220623210728918.png title=image-20220623210728918></p></li></ol><h2 id=测试性能>测试性能</h2><p>redis-benchmark是一个压力测试工具</p><p>官方自待的性能测试工具！</p><p>redis-benchmark命令参数如下：</p><table><thead><tr><th align=left>序号</th><th align=left>选项</th><th align=left>描述</th><th align=left>默认值</th></tr></thead><tbody><tr><td align=left>1</td><td align=left><strong>-h</strong></td><td align=left>指定服务器主机名</td><td align=left>127.0.0.1</td></tr><tr><td align=left>2</td><td align=left><strong>-p</strong></td><td align=left>指定服务器端口</td><td align=left>6379</td></tr><tr><td align=left>3</td><td align=left><strong>-s</strong></td><td align=left>指定服务器 socket</td><td align=left></td></tr><tr><td align=left>4</td><td align=left><strong>-c</strong></td><td align=left>指定并发连接数</td><td align=left>50</td></tr><tr><td align=left>5</td><td align=left><strong>-n</strong></td><td align=left>指定请求数</td><td align=left>10000</td></tr><tr><td align=left>6</td><td align=left><strong>-d</strong></td><td align=left>以字节的形式指定 SET/GET 值的数据大小</td><td align=left>3</td></tr><tr><td align=left>7</td><td align=left><strong>-k</strong></td><td align=left>1=keep alive 0=reconnect</td><td align=left>1</td></tr><tr><td align=left>8</td><td align=left><strong>-r</strong></td><td align=left>SET/GET/INCR 使用随机 key, SADD 使用随机值</td><td align=left></td></tr><tr><td align=left>9</td><td align=left><strong>-P</strong></td><td align=left>通过管道传输 <numreq>请求</td><td align=left>1</td></tr><tr><td align=left>10</td><td align=left><strong>-q</strong></td><td align=left>强制退出 redis。仅显示 query/sec 值</td><td align=left></td></tr><tr><td align=left>11</td><td align=left><strong>&ndash;csv</strong></td><td align=left>以 CSV 格式输出</td><td align=left></td></tr><tr><td align=left>12</td><td align=left>*<strong>-l*（L 的小写字母）</strong></td><td align=left>生成循环，永久执行测试</td><td align=left></td></tr><tr><td align=left>13</td><td align=left><strong>-t</strong></td><td align=left>仅运行以逗号分隔的测试命令列表。</td><td align=left></td></tr><tr><td align=left>14</td><td align=left>*<strong>-I*（i 的大写字母）</strong></td><td align=left>Idle 模式。仅打开 N 个 idle 连接并等待。</td><td align=left></td></tr></tbody></table><p><code>redis-benchmark -h localhost -p 6379 -c 100 -n 100000</code></p><p>结果如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span> <span class=nv>SET</span> <span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span>
+  <span class=m>100000</span> requests completed in 6.20 seconds <span class=c1>#对100000个请求进行测试，共耗时6.2秒</span>
+  <span class=m>100</span> parallel clients <span class=c1># 100个并发客户端</span>
+  <span class=m>3</span> bytes payload <span class=c1># 每次只写入三个字节</span>
+  keep alive: <span class=m>1</span> <span class=c1># 只有一台服务器来处理这些请求，即单机性能</span>
+  host configuration <span class=s2>&#34;save&#34;</span>: <span class=m>3600</span> <span class=m>1</span> <span class=m>300</span> <span class=m>100</span> <span class=m>60</span> <span class=m>10000</span>
+  host configuration <span class=s2>&#34;appendonly&#34;</span>: no
+  multi-thread: no
+</code></pre></td></tr></table></div></div><h2 id=基础知识>基础知识</h2><p>redis默认有16个数据库</p><p><img class=lazyload src=/svg/loading.min.svg data-src=A:%5cMyTyparo%5cRedis%5cRedis%e5%85%a5%e9%97%a8.assets%5cimage-20220623212947664.png data-srcset="A:%5cMyTyparo%5cRedis%5cRedis%e5%85%a5%e9%97%a8.assets%5cimage-20220623212947664.png, A:%5cMyTyparo%5cRedis%5cRedis%e5%85%a5%e9%97%a8.assets%5cimage-20220623212947664.png 1.5x, A:%5cMyTyparo%5cRedis%5cRedis%e5%85%a5%e9%97%a8.assets%5cimage-20220623212947664.png 2x" data-sizes=auto alt=A:\MyTyparo\Redis\Redis入门.assets\image-20220623212947664.png title=image-20220623212947664></p><p>默认使用第0个</p><p>可以使用select切换数据库</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; <span class=k>select</span> <span class=m>3</span> <span class=c1># 切换数据库</span>
+OK
+127.0.0.1:6379<span class=o>[</span>3<span class=o>]</span>&gt; dbsize <span class=c1># 查看数据库大小</span>
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>0</span>
+127.0.0.1:6379<span class=o>[</span>3<span class=o>]</span>&gt; <span class=nb>set</span> name qimington
+OK
+127.0.0.1:6379<span class=o>[</span>3<span class=o>]</span>&gt; dbsize
+<span class=o>(</span>integer<span class=o>)</span> <span class=m>1</span>
+127.0.0.1:6379<span class=o>[</span>3<span class=o>]</span>&gt; keys * <span class=c1># 查看所有的key</span>
+1<span class=o>)</span> <span class=s2>&#34;name&#34;</span>
+127.0.0.1:6379<span class=o>[</span>3<span class=o>]</span>&gt; flushdb <span class=c1># 清空当前数据库</span>
+OK
+127.0.0.1:6379<span class=o>[</span>3<span class=o>]</span>&gt; keys *
+<span class=o>(</span>empty array<span class=o>)</span>
+</code></pre></td></tr></table></div></div><blockquote><p>值得注意的是，<code>flushall</code>清空全部数据库</p></blockquote><blockquote><p>Redis是单线程的</p></blockquote><p>Redis是很快的，是基于内存操作的，CPU不是Redis性能瓶颈，Redis的瓶颈是根据机器的内存和网络带宽，既然可以使用单线程来实现，就使用单线程了。</p><p>Redis是C语言写的，官方提供的数据为100000+的QPS，完全不比同样是使用key-value的Memecache差！</p><p><strong>Redis为什么单线程还这么快？</strong></p><ol><li>误区1：高性能服务器一定是多线程的？否</li><li>误区2：多线程（CPU上下文会切换！）一定比单线程效率高？否</li></ol><p>了解：CPU>内存>硬盘的速度</p><p>核心：Redis是将所有的数据全部放在内存中，所以说使用单线程去操作效率就是高的，多线程（CPU上下文会切换：耗时的操作！！），对于内存系统来说，如果没有上下文切换效率就是最高的！多次读写都是在一个CPU上的，在内存情况下，这个就是最佳方案！</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2022-06-22</span></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/redis/>Redis</a>,&nbsp;<a href=/tags/%E7%AC%94%E8%AE%B0/>笔记</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/ml/ class=prev rel=prev title=Python实现11种特征选择策略><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>Python实现11种特征选择策略</a>
+<a href=/posts/springboot/%E5%A5%BD%E7%94%A8%E7%9A%84%E8%AE%BE%E7%BD%AE/ class=next rel=next title=好用的设置>好用的设置<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>QiMington</a></span></div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><span class=license><img src=/beian.png style=vertical-align:middle;height:16.5px><a href="https://beian.mps.gov.cn/#/query/webSearch?code=42088102000171" rel=noreferrer target=_blank>鄂公网安备42088102000171</a></span><span class=icp-splitter>&nbsp;&nbsp;|&nbsp;</span><br class=icp-br><span class=icp><a href=https://beian.miit.gov.cn target=_blank>鄂ICP备2022006388号</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
